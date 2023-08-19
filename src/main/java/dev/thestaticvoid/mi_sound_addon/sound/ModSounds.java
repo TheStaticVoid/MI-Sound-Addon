@@ -12,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -156,7 +155,7 @@ public class ModSounds {
         setVolume("mixer", config.mixerVolume);
         setVolume("packer", config.packerVolume);
         setVolume("polarizer", config.polarizerVolume);
-        setVolume("pressurizer", config.quarryVolume);
+        setVolume("pressurizer", config.pressurizerVolume);
         setVolume("quarry", config.oilDrillingRigVolume);
         setVolume("unpacker", config.unpackerVolume);
         setVolume("vacuum_freezer", config.vacuumFreezerVolume);
