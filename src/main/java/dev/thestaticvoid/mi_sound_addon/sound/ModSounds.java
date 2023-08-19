@@ -5,6 +5,7 @@ import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
+import dev.thestaticvoid.mi_sound_addon.compat.kubejs.KubeJSProxy;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -63,6 +64,7 @@ public class ModSounds {
         // TODO fission reactor
         updateDurations();
         updateVolumes();
+        KubeJSProxy.instance.fireRegisterSoundsEvent();
     }
 
     public static void addSoundEvent(String type) {
@@ -82,36 +84,51 @@ public class ModSounds {
         MISoundAddon.LOGGER.debug("Registered SoundEvent for RecipeType: " + type);
     }
 
+    public static void setDuration(String type, int duration) {
+        if (machineRecipeTypeSoundEvents.containsKey(type)) {
+            machineRecipeTypeSoundEvents.get(type).setSoundDuration(duration);
+        } else {
+            throw new IllegalStateException("Tried to set duration of non-existent recipe type");
+        }
+    }
+
+    public static void setVolume(String type, float volume) {
+        if (machineRecipeTypeSoundEvents.containsKey(type)) {
+            machineRecipeTypeSoundEvents.get(type).setVolume(volume);
+        } else {
+            throw new IllegalStateException("Tried to set volume of non-existent recipe type");
+        }
+    }
+
     private static void updateDurations() {
         // Values are calculated by hand here
         // I would prefer if they weren't, but I just haven't gotten there yet
-        machineRecipeTypeSoundEvents.get("furnace").setSoundDuration(64);
-        machineRecipeTypeSoundEvents.get("fusion_reactor").setSoundDuration(68);
-        machineRecipeTypeSoundEvents.get("mixer").setSoundDuration(38);
+        setDuration("furnace", 64);
+        setDuration("fusion_reactor", 68);
+        setDuration("mixer", 38);
     }
 
     private static void updateVolumes() {
         MISoundAddonConfig config = MISoundAddonConfig.getConfig();
-        machineRecipeTypeSoundEvents.get("assembler").setVolume(config.assemblerVolume);
-        machineRecipeTypeSoundEvents.get("centrifuge").setVolume(config.centrifugeVolume);
-        machineRecipeTypeSoundEvents.get("chemical_reactor").setVolume(config.chemicalReactorVolume);
-        machineRecipeTypeSoundEvents.get("coke_oven").setVolume(config.cokeOvenVolume);
-        machineRecipeTypeSoundEvents.get("compressor").setVolume(config.compressorVolume);
-        machineRecipeTypeSoundEvents.get("cutting_machine").setVolume(config.cuttingMachineVolume);
-        machineRecipeTypeSoundEvents.get("distillation_tower").setVolume(config.distillationTowerVolume);
-        machineRecipeTypeSoundEvents.get("electrolyzer").setVolume(config.electrolyzerVolume);
-        machineRecipeTypeSoundEvents.get("fusion_reactor").setVolume(config.fusionReactorVolume);
-        machineRecipeTypeSoundEvents.get("furnace").setVolume(config.furnaceVolume);
-        machineRecipeTypeSoundEvents.get("implosion_compressor").setVolume(config.implosionCompressorVolume);
-        machineRecipeTypeSoundEvents.get("macerator").setVolume(config.maceratorVolume);
-        machineRecipeTypeSoundEvents.get("mixer").setVolume(config.mixerVolume);
-        machineRecipeTypeSoundEvents.get("oil_drilling_rig").setVolume(config.oilDrillingRigVolume);
-        machineRecipeTypeSoundEvents.get("packer").setVolume(config.packerVolume);
-        machineRecipeTypeSoundEvents.get("polarizer").setVolume(config.polarizerVolume);
-        machineRecipeTypeSoundEvents.get("pressurizer").setVolume(config.pressurizerVolume);
-        machineRecipeTypeSoundEvents.get("quarry").setVolume(config.pressurizerVolume);
-        machineRecipeTypeSoundEvents.get("unpacker").setVolume(config.unpackerVolume);
-        machineRecipeTypeSoundEvents.get("vacuum_freezer").setVolume(config.vacuumFreezerVolume);
-        machineRecipeTypeSoundEvents.get("wiremill").setVolume(config.wiremillVolume);
+        setVolume("assembler", config.assemblerVolume);
+        setVolume("centrifuge", config.centrifugeVolume);
+        setVolume("chemical_reactor", config.chemicalReactorVolume);
+        setVolume("coke_oven", config.cokeOvenVolume);
+        setVolume("compressor", config.compressorVolume);
+        setVolume("cutting_machine", config.cuttingMachineVolume);
+        setVolume("distillation_tower", config.distillationTowerVolume);
+        setVolume("electrolyzer", config.electrolyzerVolume);
+        setVolume("fusion_reactor", config.fusionReactorVolume);
+        setVolume("furnace", config.furnaceVolume);
+        setVolume("implosion_compressor", config.implosionCompressorVolume);
+        setVolume("macerator", config.maceratorVolume);
+        setVolume("mixer", config.mixerVolume);
+        setVolume("packer", config.packerVolume);
+        setVolume("polarizer", config.polarizerVolume);
+        setVolume("pressurizer", config.quarryVolume);
+        setVolume("quarry", config.oilDrillingRigVolume);
+        setVolume("unpacker", config.unpackerVolume);
+        setVolume("vacuum_freezer", config.vacuumFreezerVolume);
+        setVolume("wiremill", config.wiremillVolume);
     }
 }

@@ -6,5 +6,5 @@ import dev.latvian.mods.kubejs.event.EventHandler;
 public interface MISoundAddonSoundKubeJSEvents {
     EventGroup EVENT_GROUP = EventGroup.of("MISoundAddons");
 
-    EventHandler ADD_SOUNDS = EVENT_GROUP.startup("addSounds", () -> AddSoundsEventJS.class);
+    EventHandler MODIFY_SOUNDS = EVENT_GROUP.startup("modifySounds", () -> ModifySoundEventsJS.class);
 }
