@@ -4,7 +4,6 @@ import aztech.modern_industrialization.machines.IComponent;
 import aztech.modern_industrialization.machines.components.CrafterComponent;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.condition.MachineProcessCondition;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import net.minecraft.world.level.block.entity.BlockEntity;
