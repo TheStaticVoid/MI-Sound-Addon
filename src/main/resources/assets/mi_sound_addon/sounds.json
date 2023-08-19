@@ -1,0 +1,134 @@
+{
+  "assembler": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:assembler"
+    ]
+  },
+  "centrifuge": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:centrifuge"
+    ]
+  },
+  "chemical_reactor": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:chemical_reactor"
+    ]
+  },
+  "compressor": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:compressor"
+    ]
+  },
+  "cutting_machine": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:cutting_machine"
+    ]
+  },
+  "electrolyzer": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:electrolyzer"
+    ]
+  },
+  "furnace": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:furnace"
+    ]
+  },
+  "macerator": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:macerator"
+    ]
+  },
+  "mixer": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:mixer"
+    ]
+  },
+  "packer": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:packer"
+    ]
+  },
+  "polarizer": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:polarizer"
+    ]
+  },
+  "unpacker": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:unpacker"
+    ]
+  },
+  "wiremill": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:wiremill"
+    ]
+  },
+  "blast_furnace": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:blast_furnace"
+    ]
+  },
+  "coke_oven": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:coke_oven"
+    ]
+  },
+  "distillation_tower": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:distillation_tower"
+    ]
+  },
+  "fusion_reactor": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:fusion_reactor"
+    ]
+  },
+  "implosion_compressor": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:implosion_compressor"
+    ]
+  },
+  "oil_drilling_rig": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:oil_drilling_rig"
+    ]
+  },
+  "pressurizer": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:pressurizer"
+    ]
+  },
+  "quarry": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:quarry"
+    ]
+  },
+  "vacuum_freezer": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:vacuum_freezer"
+    ]
+  }
+}

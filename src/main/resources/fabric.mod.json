@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "mi_sound_addon",
+  "version": "${version}",
+  "name": "MI Sound Addon",
+  "description": "Adds sounds to the Modern Industrialization mod",
+  "authors": [
+    "static"
+  ],
+  "contact": {
+    "repo": "https://github.com/TheStaticVoid/MI-Sound-Addon"
+  },
+  "license": "MIT",
+  "icon": "assets/mi_sound_addon/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.thestaticvoid.mi_sound_addon.client.MISoundAddonClient"
+    ],
+    "main": [
+      "dev.thestaticvoid.mi_sound_addon.MISoundAddon"
+    ]
+  },
+  "mixins": [
+    "mi_sound_addon.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
