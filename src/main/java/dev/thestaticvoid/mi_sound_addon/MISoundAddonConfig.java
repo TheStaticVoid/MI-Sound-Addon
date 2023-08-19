@@ -19,6 +19,9 @@ public class MISoundAddonConfig implements ConfigData {
     @EnglishTranslation(value = "Assembler Volume")
     public float assemblerVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
+    @EnglishTranslation(value = "Steam Blast Furnace Volume")
+    public float blastFurnaceVolume = 1.0f;
+    @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Centrifuge Volume")
     public float centrifugeVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
@@ -36,6 +39,9 @@ public class MISoundAddonConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Distillation Tower Volume")
     public float distillationTowerVolume = 1.0f;
+    @ConfigEntry.Gui.RequiresRestart
+    @EnglishTranslation(value = "Electric Blast Furnace Volume")
+    public float electricBlastFurnaceVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Electrolyzer Volume")
     public float electrolyzerVolume = 1.0f;
@@ -82,9 +88,6 @@ public class MISoundAddonConfig implements ConfigData {
 
     @ConfigEntry.Gui.Excluded
     private transient static boolean registered = false;
-
-    // TODO add machine volumes
-
     public static synchronized MISoundAddonConfig getConfig() {
         if (!registered) {
             AutoConfig.register(MISoundAddonConfig.class, Toml4jConfigSerializer::new);

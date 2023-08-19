@@ -23,6 +23,12 @@
       "mi_sound_addon:compressor"
     ]
   },
+  "distillery": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:distillery"
+    ]
+  },
   "cutting_machine": {
     "category": "block",
     "sounds": [
@@ -83,6 +89,12 @@
       "mi_sound_addon:blast_furnace"
     ]
   },
+  "electric_blast_furnace": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:electric_blast_furnace"
+    ]
+  },
   "coke_oven": {
     "category": "block",
     "sounds": [
@@ -99,6 +111,12 @@
     "category": "block",
     "sounds": [
       "mi_sound_addon:fusion_reactor"
+    ]
+  },
+  "fission_reactor": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:fission_reactor"
     ]
   },
   "implosion_compressor": {

@@ -1,12 +1,12 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
 import aztech.modern_industrialization.machines.IComponent;
+import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.components.CrafterComponent;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.condition.MachineProcessCondition;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -28,7 +28,7 @@ public abstract class TickRecipeMixin implements IComponent.ServerOnly {
     @Inject(method = "tickRecipe", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
     private void tickRecipeInjection(CallbackInfoReturnable<Boolean> cir, boolean isActive) {
         if (MISoundAddonConfig.getConfig().enableSounds) {
-            BlockEntity blockEntity = this.conditionContext.getBlockEntity();
+            MachineBlockEntity blockEntity = this.conditionContext.getBlockEntity();
             if (cachedWorldTime == 0) {
                 cachedWorldTime = blockEntity.getLevel().getGameTime();
             }

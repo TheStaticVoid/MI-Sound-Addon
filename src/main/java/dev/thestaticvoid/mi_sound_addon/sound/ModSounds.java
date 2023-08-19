@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.sound;
 
+import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
@@ -31,11 +32,17 @@ public class ModSounds {
         }
     }
 
-    public static void playSound(@NotNull BlockEntity blockEntity, MachineRecipe activeRecipe) {
+    public static void playSound(@NotNull MachineBlockEntity blockEntity, MachineRecipe activeRecipe) {
         Level world = blockEntity.getLevel();
         if (world == null) { return; }
 
-        ModSoundEventInfo soundEventInfo = machineRecipeTypeSoundEvents.get(getRecipeType(activeRecipe));
+        ModSoundEventInfo soundEventInfo;
+
+        if (!blockEntity.guiParams.blockId.equals("electric_blast_furnace")) {
+            soundEventInfo = machineRecipeTypeSoundEvents.get(getRecipeType(activeRecipe));
+        } else {
+            soundEventInfo = machineRecipeTypeSoundEvents.get("electric_blast_furnace");
+        }
 
         if (soundEventInfo.getSoundEvent() != null) {
             world.playSound(null, blockEntity.getBlockPos().getX(), blockEntity.getBlockPos().getY(),
@@ -61,6 +68,7 @@ public class ModSounds {
 
             addSoundEvent(type);
         }
+        addSoundEvent("electric_blast_furnace");
         // TODO fission reactor
         updateDurations();
         updateVolumes();
@@ -106,17 +114,40 @@ public class ModSounds {
         setDuration("furnace", 64);
         setDuration("fusion_reactor", 68);
         setDuration("mixer", 38);
+        setDuration("chemical_reactor", 154);
+        setDuration("cutting_machine", 72);
+        // setDuration("fission_reactor", 219);
+        setDuration("vacuum_freezer", 61);
+        setDuration("electric_blast_furnace", 128);
+        setDuration("assembler", 110);
+        setDuration("compressor", 44);
+        setDuration("macerator", 59);
+        setDuration("packer", 28);
+        setDuration("unpacker", 28);
+        setDuration("polarizer", 37);
+        setDuration("centrifuge", 129);
+        setDuration("electrolyzer", 111);
+        setDuration("pressurizer", 89);
+        setDuration("quarry", 111);
+        setDuration("wiremill", 120);
+        setDuration("blast_furnace", 212);
+        setDuration("distillery", 51);
+        setDuration("oil_drilling_rig", 129);
+        setDuration("distillation_tower", 110);
+        setDuration("implosion_compressor", 14);
     }
 
     private static void updateVolumes() {
         MISoundAddonConfig config = MISoundAddonConfig.getConfig();
         setVolume("assembler", config.assemblerVolume);
+        setVolume("blast_furnace", config.blastFurnaceVolume);
         setVolume("centrifuge", config.centrifugeVolume);
         setVolume("chemical_reactor", config.chemicalReactorVolume);
         setVolume("coke_oven", config.cokeOvenVolume);
         setVolume("compressor", config.compressorVolume);
         setVolume("cutting_machine", config.cuttingMachineVolume);
         setVolume("distillation_tower", config.distillationTowerVolume);
+        setVolume("electric_blast_furnace", config.electricBlastFurnaceVolume);
         setVolume("electrolyzer", config.electrolyzerVolume);
         setVolume("fusion_reactor", config.fusionReactorVolume);
         setVolume("furnace", config.furnaceVolume);
