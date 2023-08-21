@@ -40,6 +40,9 @@ public class MISoundAddonConfig implements ConfigData {
     @EnglishTranslation(value = "Distillation Tower Volume")
     public float distillationTowerVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
+    @EnglishTranslation(value = "Distillery Volume")
+    public float distilleryVolume = 1.0f;
+    @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Electric Blast Furnace Volume")
     public float electricBlastFurnaceVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
@@ -50,7 +53,10 @@ public class MISoundAddonConfig implements ConfigData {
     public float fusionReactorVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Furnace Volume")
-    public float furnaceVolume = 0.8f;
+    public float furnaceVolume = 1.0f;
+    @ConfigEntry.Gui.RequiresRestart
+    @EnglishTranslation(value = "Heat Exchanger Volume")
+    public float heatExchangerVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Implosion Compressor Volume")
     public float implosionCompressorVolume = 1.0f;
@@ -59,7 +65,7 @@ public class MISoundAddonConfig implements ConfigData {
     public float maceratorVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Mixer Volume")
-    public float mixerVolume = 0.8f;
+    public float mixerVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Oil Drilling Rig Volume")
     public float oilDrillingRigVolume = 1.0f;

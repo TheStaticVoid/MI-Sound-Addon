@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon;
 
+import dev.thestaticvoid.mi_sound_addon.item.ModItems;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -22,6 +23,7 @@ public class MISoundAddon implements ModInitializer {
 
     private static void initializeSoundMod() {
         ModSounds.initializeSounds();
+        ModItems.registerModItems();
         LOGGER.debug("Initialized mod: " + MOD_ID);
     }
 

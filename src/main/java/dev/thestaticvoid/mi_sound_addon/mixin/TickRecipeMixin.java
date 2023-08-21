@@ -34,8 +34,8 @@ public abstract class TickRecipeMixin implements IComponent.ServerOnly {
             }
             cachedWorldTime++;
 
-            if (isActive) {
-                if (cachedWorldTime > lastSoundTime + ModSounds.getSoundDuration(this.activeRecipe)) {
+            if (isActive && this.activeRecipe != null) {
+                if (cachedWorldTime > lastSoundTime + ModSounds.getDuration(this.activeRecipe)) {
                     lastSoundTime = cachedWorldTime;
                     ModSounds.playSound(blockEntity, this.activeRecipe);
                 }

@@ -119,6 +119,12 @@
       "mi_sound_addon:fission_reactor"
     ]
   },
+  "heat_exchanger": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:heat_exchanger"
+    ]
+  },
   "implosion_compressor": {
     "category": "block",
     "sounds": [
