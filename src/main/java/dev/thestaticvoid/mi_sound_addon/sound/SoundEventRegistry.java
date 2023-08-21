@@ -109,7 +109,7 @@ public class SoundEventRegistry {
         setVolume("packer", config.packerVolume);
         setVolume("polarizer", config.polarizerVolume);
         setVolume("pressurizer", config.pressurizerVolume);
-        setVolume("quarry", config.oilDrillingRigVolume);
+        setVolume("quarry", config.quarryVolume);
         setVolume("unpacker", config.unpackerVolume);
         setVolume("vacuum_freezer", config.vacuumFreezerVolume);
         setVolume("wiremill", config.wiremillVolume);
