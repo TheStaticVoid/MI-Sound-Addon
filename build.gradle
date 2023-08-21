@@ -118,10 +118,6 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modRuntimeOnly "dev.architectury:architectury-fabric:6.2.43"
 
-    modImplementation("me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-
     modImplementation("dev.latvian.mods:kubejs-fabric:${project.kubejs_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
