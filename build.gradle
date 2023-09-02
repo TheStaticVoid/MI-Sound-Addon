@@ -130,18 +130,18 @@ dependencies {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    include modApi("teamreborn:energy:${project.tr_energy_version}") {
+    modApi("teamreborn:energy:${project.tr_energy_version}") {
         exclude(group: "net.fabricmc.fabric-api")
         exclude group: "net.fabricmc", module: "fabric-loader"
     }
 
-    include modImplementation("com.github.Technici4n:magna:${project.magna_version}") {
+    modImplementation("com.github.Technici4n:magna:${project.magna_version}") {
         exclude(group: "io.github.prospector")
         exclude(group: "me.shedaniel.cloth")
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    include modImplementation("io.github.ladysnake:PlayerAbilityLib:${project.pal_version}") {
+    modImplementation("io.github.ladysnake:PlayerAbilityLib:${project.pal_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 }

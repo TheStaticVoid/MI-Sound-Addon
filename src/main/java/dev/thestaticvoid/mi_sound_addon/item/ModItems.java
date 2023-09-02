@@ -11,9 +11,10 @@ import net.minecraft.world.item.ItemStack;
 
 public class ModItems {
     public static CreativeModeTab SOUND_ADDON_GROUP = FabricItemGroupBuilder.build(
-            new ResourceLocation(MISoundAddon.MOD_ID, "creative_tab"), () -> new ItemStack(ModItems.MUFFLER));
-    public static final Item MUFFLER = registerItem("muffler",
-            new MufflerItem(new FabricItemSettings().group(SOUND_ADDON_GROUP)));
+            new ResourceLocation(MISoundAddon.MOD_ID, "creative_tab"), () -> new ItemStack(ModItems.MALLET));
+
+    public static final Item MALLET = registerItem("mallet",
+            new MalletItem(new FabricItemSettings().group(SOUND_ADDON_GROUP)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registry.ITEM, new ResourceLocation(MISoundAddon.MOD_ID, name), item);

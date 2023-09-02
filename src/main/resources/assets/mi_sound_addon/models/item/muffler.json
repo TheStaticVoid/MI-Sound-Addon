@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "mi_sound_addon:item/muffler"
-  }
-}

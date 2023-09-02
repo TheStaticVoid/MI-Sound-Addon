@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "mi_sound_addon:item/mallet"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "modern_industrialization:steel_plate"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "T": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " PS",
+    " TP",
+    "T  "
+  ],
+  "result": {
+    "item": "mi_sound_addon:mallet"
+  }
+}
