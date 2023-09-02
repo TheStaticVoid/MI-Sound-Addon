@@ -7,7 +7,6 @@ import aztech.modern_industrialization.machines.IComponent;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import dev.thestaticvoid.mi_sound_addon.item.MalletItem;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponentInterface;

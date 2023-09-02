@@ -17,6 +17,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import java.util.Objects;
+
 @Mixin(CrafterComponent.class)
 public abstract class TickRecipeMixin implements IComponent.ServerOnly {
     @Unique
@@ -34,7 +37,7 @@ public abstract class TickRecipeMixin implements IComponent.ServerOnly {
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;
             if (cachedWorldTime == 0) {
-                cachedWorldTime = blockEntity.getLevel().getGameTime();
+                cachedWorldTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
             }
             cachedWorldTime++;
 

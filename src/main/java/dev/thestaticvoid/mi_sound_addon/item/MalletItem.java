@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MalletItem extends Item {
     public static final String TOOLTIP_TEXT = "message.mi_sound_addon.tooltip";
@@ -38,7 +39,7 @@ public class MalletItem extends Item {
         }
 
         if (stackInHand.getItem() instanceof MalletItem) {
-            be.getLevel().playSound(null, be.getBlockPos(), SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.25f, 1.0f);
+            Objects.requireNonNull(be.getLevel()).playSound(null, be.getBlockPos(), SoundEvents.ANVIL_USE, SoundSource.BLOCKS, 0.25f, 1.0f);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
