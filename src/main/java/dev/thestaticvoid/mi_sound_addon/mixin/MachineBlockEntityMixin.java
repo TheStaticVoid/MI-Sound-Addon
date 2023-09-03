@@ -31,7 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(MachineBlockEntity.class)
 public abstract class MachineBlockEntityMixin extends FastBlockEntity
         implements ExtendedScreenHandlerFactory, RenderAttachmentBlockEntity, WrenchableBlockEntity, SilencedComponentInterface {
-
     public MachineBlockEntityMixin(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }

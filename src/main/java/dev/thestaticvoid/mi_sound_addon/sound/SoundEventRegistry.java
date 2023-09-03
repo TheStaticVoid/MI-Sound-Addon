@@ -3,7 +3,6 @@ package dev.thestaticvoid.mi_sound_addon.sound;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
-import dev.thestaticvoid.mi_sound_addon.compat.kubejs.KubeJSProxy;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -23,7 +22,6 @@ public class SoundEventRegistry {
         addSoundEvent("fission_reactor");
         updateDurations();
         updateVolumes();
-        KubeJSProxy.instance.fireRegisterSoundsEvent();
     }
 
     public static void setDuration(String type, int duration) {
