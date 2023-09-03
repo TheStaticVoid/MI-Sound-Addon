@@ -24,8 +24,6 @@ public abstract class ForgeHammerScreenHandlerMixin extends AbstractContainerMen
 
     @Inject(method = "onCraft", at = @At("HEAD"), remap = false)
     private void onCraftMixin(CallbackInfo ci) {
-        context.execute((world, pos) -> {
-            world.playSound(null, pos, SoundEvents.SMITHING_TABLE_USE, SoundSource.BLOCKS, MISoundAddonConfig.getConfig().forgeHammerVolume, 1.0f);
-        });
+        context.execute((world, pos) -> world.playSound(null, pos, SoundEvents.SMITHING_TABLE_USE, SoundSource.BLOCKS, MISoundAddonConfig.getConfig().forgeHammerVolume, 1.0f));
     }
 }
