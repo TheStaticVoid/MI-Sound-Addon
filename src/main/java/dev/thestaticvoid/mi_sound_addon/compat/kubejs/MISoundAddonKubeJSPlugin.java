@@ -8,4 +8,9 @@ public class MISoundAddonKubeJSPlugin extends KubeJSPlugin {
     public void registerEvents() {
         MISoundKubeJSEvents.EVENT_GROUP.register();
     }
+
+    @Override
+    public void initStartup() {
+        KubeJSProxy.instance = new LoadedKubeJSProxy();
+    }
 }
