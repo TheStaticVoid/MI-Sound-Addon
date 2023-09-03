@@ -4,7 +4,6 @@ import dev.thestaticvoid.mi_sound_addon.compat.kubejs.KubeJSProxy;
 import dev.thestaticvoid.mi_sound_addon.item.ModItems;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,9 +15,7 @@ public class MISoundAddon implements ModInitializer {
     public void onInitialize() {
         ModSounds.initializeSounds();
         ModItems.registerModItems();
+        KubeJSProxy.instance.fireSoundModificationsEvent();
         LOGGER.debug("Initialized mod: " + MOD_ID);
-        if (FabricLoader.getInstance().isModLoaded("kubejs")) {
-            KubeJSProxy.instance.fireSoundModificationsEvent();
-        }
     }
 }
