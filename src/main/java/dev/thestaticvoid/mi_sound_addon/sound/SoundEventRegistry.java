@@ -98,12 +98,14 @@ public class SoundEventRegistry {
         setVolume("distillery", config.distilleryVolume);
         setVolume("electric_blast_furnace", config.electricBlastFurnaceVolume);
         setVolume("electrolyzer", config.electrolyzerVolume);
+        setVolume("fission_reactor", config.fissionReactorVolume);
         setVolume("fusion_reactor", config.fusionReactorVolume);
         setVolume("furnace", config.furnaceVolume);
         setVolume("heat_exchanger", config.heatExchangerVolume);
         setVolume("implosion_compressor", config.implosionCompressorVolume);
         setVolume("macerator", config.maceratorVolume);
         setVolume("mixer", config.mixerVolume);
+        setVolume("oil_drilling_rig", config.oilDrillingRigVolume);
         setVolume("packer", config.packerVolume);
         setVolume("polarizer", config.polarizerVolume);
         setVolume("pressurizer", config.pressurizerVolume);

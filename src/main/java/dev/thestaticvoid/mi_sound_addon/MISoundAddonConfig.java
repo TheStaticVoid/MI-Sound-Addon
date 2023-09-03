@@ -49,6 +49,9 @@ public class MISoundAddonConfig implements ConfigData {
     @EnglishTranslation(value = "Electrolyzer Volume")
     public float electrolyzerVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
+    @EnglishTranslation(value = "Fission Reactor Volume")
+    public float fissionReactorVolume = 1.0f;
+    @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Fusion Reactor Volume")
     public float fusionReactorVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
