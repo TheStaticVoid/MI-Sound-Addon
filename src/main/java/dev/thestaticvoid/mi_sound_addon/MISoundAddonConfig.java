@@ -82,9 +82,6 @@ public class MISoundAddonConfig implements ConfigData {
     @EnglishTranslation(value = "Pressurizer Volume")
     public float pressurizerVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
-    @EnglishTranslation(value = "Forge Hammer Volume")
-    public float forgeHammerVolume = 1.0f;
-    @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Quarry Volume")
     public float quarryVolume = 1.0f;
     @ConfigEntry.Gui.RequiresRestart
