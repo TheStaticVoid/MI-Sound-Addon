@@ -18,9 +18,7 @@ public class ModSounds {
     public static void initializeSounds() {
         MISoundAddon.LOGGER.debug("Registering sounds for " + MISoundAddon.MOD_ID);
         SOUND_EVENTS = new HashMap<>();
-        if (MISoundAddonConfig.getConfig().enableSounds) {
-            SoundEventRegistry.populateDefaultRecipeTypes(MIMachineRecipeTypes.getRecipeTypes());
-        }
+        SoundEventRegistry.populateDefaultRecipeTypes(MIMachineRecipeTypes.getRecipeTypes());
     }
 
     private static String getRecipeType(@NotNull MachineRecipe activeRecipe) {

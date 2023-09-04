@@ -13,9 +13,11 @@ public class MISoundAddon implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        ModSounds.initializeSounds();
+        if (MISoundAddonConfig.getConfig().enableSounds) {
+            ModSounds.initializeSounds();
+            KubeJSProxy.instance.fireSoundModificationsEvent();
+        }
         ModItems.registerModItems();
-        KubeJSProxy.instance.fireSoundModificationsEvent();
         LOGGER.debug("Initialized mod: " + MOD_ID);
     }
 }
