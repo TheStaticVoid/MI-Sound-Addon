@@ -35,7 +35,9 @@ public abstract class NuclearReactorMultiblockBlockEntityMixin extends Multibloc
 
     @Shadow(remap = false) @Final private IsActiveComponent isActive;
 
-    @Inject(method = "tick", at = @At(value = "INVOKE", target = "Laztech/modern_industrialization/machines/components/IsActiveComponent;updateActive(ZLaztech/modern_industrialization/machines/MachineBlockEntity;)V", shift = At.Shift.AFTER), remap = false)
+    @Inject(method = "tick", at = @At(value = "INVOKE",
+            target = "Laztech/modern_industrialization/machines/components/IsActiveComponent;updateActive(ZLaztech/modern_industrialization/machines/MachineBlockEntity;)V",
+            shift = At.Shift.AFTER), remap = false)
     private void tickMixin(CallbackInfo ci) {
         if (isActive.isActive && MISoundAddonConfig.getConfig().enableSounds) {
             MachineBlockEntity blockEntity = this;
