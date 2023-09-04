@@ -76,7 +76,7 @@ public class SoundEventRegistry {
         setDuration("implosion_compressor", 70);
         setDuration("macerator", 16);
         setDuration("mixer", 27);
-        setDuration("oil_drilling_rig", 34);
+        setDuration("oil_drilling_rig", 33);
         setDuration("packer", 23);
         setDuration("polarizer", 35);
         setDuration("pressurizer", 89);
