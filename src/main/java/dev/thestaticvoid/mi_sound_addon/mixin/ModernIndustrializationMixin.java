@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ModernIndustrialization.class)
 public class ModernIndustrializationMixin {
     @Inject(method = "lambda$setupWrench$6", at = @At(value = "INVOKE",
-            target = "Lnet/minecraft/world/InteractionResult;sidedSuccess(Z)Lnet/minecraft/world/InteractionResult;", shift = At.Shift.BEFORE), remap = false)
+            target = "Lnet/minecraft/world/InteractionResult;sidedSuccess(Z)Lnet/minecraft/world/InteractionResult;", shift = At.Shift.BEFORE, remap = true), remap = false)
     private static void setupWrenchMixin(Player player, Level world, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
          Level level = player.getLevel();
          ModSoundEventInfo wrenchEvent = ModSounds.SOUND_EVENTS.get("wrench");
