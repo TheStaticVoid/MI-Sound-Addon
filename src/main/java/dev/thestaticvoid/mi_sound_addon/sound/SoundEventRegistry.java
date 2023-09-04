@@ -20,6 +20,7 @@ public class SoundEventRegistry {
 
         addSoundEvent("electric_blast_furnace");
         addSoundEvent("fission_reactor");
+        addSoundEvent("wrench");
         updateDurations();
         updateVolumes();
     }

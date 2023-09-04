@@ -154,5 +154,11 @@
     "sounds": [
       "mi_sound_addon:vacuum_freezer"
     ]
+  },
+  "wrench": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:wrench"
+    ]
   }
 }
