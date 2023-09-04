@@ -114,5 +114,6 @@ public class SoundEventRegistry {
         setVolume("unpacker", config.unpackerVolume);
         setVolume("vacuum_freezer", config.vacuumFreezerVolume);
         setVolume("wiremill", config.wiremillVolume);
+        setVolume("wrench", config.wrenchVolume);
     }
 }
