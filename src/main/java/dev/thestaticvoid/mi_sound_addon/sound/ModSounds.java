@@ -5,7 +5,6 @@ import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
