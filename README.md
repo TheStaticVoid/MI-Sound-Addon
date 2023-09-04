@@ -3,6 +3,9 @@
 This is a mod that is intended to be used with the Modern Industrialization mod. It adds new sounds to all the existing machines, and offers modpack developers a way to extend these sounds to any custom singleblock or multiblock machines they have added using the KubeJS integration in Modern Industrialization itself.
 If you have any questions, please join the [StaTech Industry Discord](https://discord.gg/RDaJEnN3uS) and ask there. 
 
+## Custom Machines & KubeJS
+This mod supports adding sounds to custom recipe types for MI machines added via KubeJS. More information for pack developers can be found on the [wiki](https://github.com/TheStaticVoid/MI-Sound-Addon/wiki),
+
 ## Credits & License Notice
 The majority of the sounds for this mod are taken from the [GregTech CEu Modern project](https://github.com/GregTechCEu/GregTech-Modern). These sounds are licensed under the Creative Commons 0 license. The code for this project is licensed under the MIT license and can be viewed [here](./LICENSE).
 Additonal sounds were pulled from Freesound and attributed below:
@@ -17,3 +20,6 @@ Additonal sounds were pulled from Freesound and attributed below:
 The Fusion Reactor sound is pulled from [Mekanism](https://github.com/mekanism/mekanism) - MIT
 
 Some of the `TickRecipeMixin` code was inspired by `TechReborn`'s implementation of machine sounds. ModMenu, Config, and KubeJS plugin implementation is based heavily off of Modern Industrialization's methods.
+
+## Disclaimer
+This mod is not affiliated with the Modern Industrialization mod and it's development team. Please do not go to them if you have any issues.
