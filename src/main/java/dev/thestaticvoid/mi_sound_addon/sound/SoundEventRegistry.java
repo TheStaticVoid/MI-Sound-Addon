@@ -4,6 +4,7 @@ import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 
@@ -50,9 +51,9 @@ public class SoundEventRegistry {
     }
 
     public static void addSoundEvent(String type, float volume, int duration) {
-        SoundEvent newSoundEvent = Registry.register(Registry.SOUND_EVENT,
-                new ResourceLocation(MISoundAddon.MOD_ID, type),
-                new SoundEvent(new ResourceLocation(MISoundAddon.MOD_ID, type)));
+        ResourceLocation identifier = new ResourceLocation(MISoundAddon.MOD_ID, type);
+        SoundEvent newSoundEvent = Registry.register(BuiltInRegistries.SOUND_EVENT, identifier,
+                SoundEvent.createVariableRangeEvent(identifier));
 
         ModSounds.SOUND_EVENTS.put(type, new ModSoundEventInfo(newSoundEvent, duration, volume));
     }

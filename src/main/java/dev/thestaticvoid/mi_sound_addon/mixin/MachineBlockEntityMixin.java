@@ -1,7 +1,7 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
-import aztech.modern_industrialization.api.FastBlockEntity;
-import aztech.modern_industrialization.api.WrenchableBlockEntity;
+import aztech.modern_industrialization.blocks.FastBlockEntity;
+import aztech.modern_industrialization.blocks.WrenchableBlockEntity;
 import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.IComponent;
 import aztech.modern_industrialization.machines.MachineBlockEntity;

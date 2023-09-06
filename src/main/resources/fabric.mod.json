@@ -26,8 +26,8 @@
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
-    "fabric": ">=0.76.1",
+    "fabric": ">=0.87.0",
     "minecraft": "${minecraft_version}",
-    "modern_industrialization": ">=1.6.14"
+    "modern_industrialization": ">=1.7.3"
   }
 }
