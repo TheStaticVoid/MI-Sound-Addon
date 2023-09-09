@@ -16,6 +16,7 @@ public class SoundEventRegistry {
     public static void populateDefaultRecipeTypes(List<MachineRecipeType> machineRecipeTypes) {
         for (MachineRecipeType mrt : machineRecipeTypes) {
             String type = mrt.getPath();
+            if (type.equals("forge_hammer")) continue;
             addSoundEvent(type);
         }
 
