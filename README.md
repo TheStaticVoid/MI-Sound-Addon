@@ -3,6 +3,9 @@
 This is a mod that is intended to be used with the Modern Industrialization mod. It adds new sounds to all the existing machines, and offers modpack developers a way to extend these sounds to any custom singleblock or multiblock machines they have added using the KubeJS integration in Modern Industrialization itself.
 If you have any questions, please join the [StaTech Industry Discord](https://discord.gg/RDaJEnN3uS) and ask there. 
 
+Available on:
+[Curseforge](https://legacy.curseforge.com/minecraft/mc-mods/modern-industrialization-sound-addon) | [Modrinth](https://modrinth.com/mod/modern-industrialization-sound-addon) | [Github](https://github.com/TheStaticVoid/MI-Sound-Addon/releases)
+
 ## Custom Machines & KubeJS
 This mod supports adding sounds to custom recipe types for MI machines added via KubeJS. More information for pack developers can be found on the [wiki](https://github.com/TheStaticVoid/MI-Sound-Addon/wiki),
 
