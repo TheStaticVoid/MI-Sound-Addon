@@ -30,8 +30,6 @@ public abstract class NuclearReactorMultiblockBlockEntityMixin extends Multibloc
 
     @Unique
     public long lastSoundTime = 0;
-    @Unique
-    public long cachedWorldTime = 0;
 
     @Shadow(remap = false) @Final private IsActiveComponent isActive;
 
@@ -43,13 +41,10 @@ public abstract class NuclearReactorMultiblockBlockEntityMixin extends Multibloc
             MachineBlockEntity blockEntity = this;
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;
-            if (cachedWorldTime == 0) {
-                cachedWorldTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
-            }
-            cachedWorldTime++;
+            long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
-            if (cachedWorldTime > lastSoundTime + ModSounds.getNuclearDuration()) {
-                lastSoundTime = cachedWorldTime;
+            if (currentGameTime > lastSoundTime + ModSounds.getNuclearDuration()) {
+                lastSoundTime = currentGameTime;
                 ModSounds.playNuclearSound(blockEntity);
             }
         }
