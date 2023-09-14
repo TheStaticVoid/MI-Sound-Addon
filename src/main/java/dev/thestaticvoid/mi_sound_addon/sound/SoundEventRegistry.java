@@ -23,6 +23,7 @@ public class SoundEventRegistry {
         addSoundEvent("electric_blast_furnace");
         addSoundEvent("fission_reactor");
         addSoundEvent("wrench");
+        addSoundEvent("replicator");
         updateDurations();
         updateVolumes();
     }
@@ -86,6 +87,7 @@ public class SoundEventRegistry {
         setDuration("unpacker", 23);
         setDuration("vacuum_freezer", 62);
         setDuration("wiremill", 45);
+        setDuration("replicator", 20);
     }
 
     private static void updateVolumes() {
@@ -117,5 +119,6 @@ public class SoundEventRegistry {
         setVolume("vacuum_freezer", config.vacuumFreezerVolume);
         setVolume("wiremill", config.wiremillVolume);
         setVolume("wrench", config.wrenchVolume);
+        setVolume("replicator", config.replicatorVolume);
     }
 }

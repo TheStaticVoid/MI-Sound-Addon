@@ -96,7 +96,9 @@ public class MISoundAddonConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     @EnglishTranslation(value = "Wrench Volume")
     public float wrenchVolume = 1.0f;
-
+    @ConfigEntry.Gui.RequiresRestart
+    @EnglishTranslation(value = "Replicator Volume")
+    public float replicatorVolume = 1.0f;
 
     @ConfigEntry.Gui.Excluded
     private transient static boolean registered = false;

@@ -28,8 +28,8 @@ public class ModSounds {
         return SOUND_EVENTS.get(getRecipeType(activeRecipe)).getSoundDuration();
     }
 
-    public static int getNuclearDuration() {
-        return SOUND_EVENTS.get("fission_reactor").getSoundDuration();
+    public static int getDurationFromString(String type) {
+        return SOUND_EVENTS.get(type).getSoundDuration();
     }
 
     public static void playSound(@NotNull MachineBlockEntity blockEntity, MachineRecipe activeRecipe) {
@@ -52,11 +52,11 @@ public class ModSounds {
         }
     }
 
-    public static void playNuclearSound(@NotNull MachineBlockEntity blockEntity) {
+    public static void playSoundNoRecipe(@NotNull MachineBlockEntity blockEntity, String type) {
         Level world = blockEntity.getLevel();
         if (world == null) { return; }
 
-        ModSoundEventInfo soundEventInfo = SOUND_EVENTS.get("fission_reactor");
+        ModSoundEventInfo soundEventInfo = SOUND_EVENTS.get(type);
 
         if (soundEventInfo.getSoundEvent() != null) {
             world.playSound(null, blockEntity.getBlockPos().getX(), blockEntity.getBlockPos().getY(),
