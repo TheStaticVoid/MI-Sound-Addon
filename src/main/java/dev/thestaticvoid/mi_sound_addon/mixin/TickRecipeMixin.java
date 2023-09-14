@@ -24,8 +24,6 @@ import java.util.Objects;
 public abstract class TickRecipeMixin implements IComponent.ServerOnly {
     @Unique
     public long lastSoundTime = 0;
-    @Unique
-    private long cachedWorldTime = 0;
 
     @Shadow(remap = false) @Final private MachineProcessCondition.Context conditionContext;
     @Shadow(remap = false) private MachineRecipe activeRecipe;
@@ -36,14 +34,11 @@ public abstract class TickRecipeMixin implements IComponent.ServerOnly {
             MachineBlockEntity blockEntity = this.conditionContext.getBlockEntity();
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;
-            if (cachedWorldTime == 0) {
-                cachedWorldTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
-            }
-            cachedWorldTime++;
+            long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
             if (isActive && this.activeRecipe != null) {
-                if (cachedWorldTime > lastSoundTime + ModSounds.getDuration(this.activeRecipe)) {
-                    lastSoundTime = cachedWorldTime;
+                if (currentGameTime > lastSoundTime + ModSounds.getDuration(this.activeRecipe)) {
+                    lastSoundTime = currentGameTime;
                     ModSounds.playSound(blockEntity, this.activeRecipe);
                 }
             }
