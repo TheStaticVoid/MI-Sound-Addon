@@ -30,7 +30,7 @@ public class SoundEventRegistry {
         if (ModSounds.SOUND_EVENTS.containsKey(type)) {
             ModSounds.SOUND_EVENTS.get(type).setSoundDuration(duration);
         } else {
-            throw new IllegalStateException("Tried to set duration of non-existent recipe type");
+            throw new IllegalStateException("Tried to set duration of non-existent recipe type: " + type);
         }
     }
 
@@ -38,7 +38,7 @@ public class SoundEventRegistry {
         if (ModSounds.SOUND_EVENTS.containsKey(type)) {
             ModSounds.SOUND_EVENTS.get(type).setVolume(volume);
         } else {
-            throw new IllegalStateException("Tried to set volume of non-existent recipe type");
+            throw new IllegalStateException("Tried to set volume of non-existent recipe type: " + type);
         }
     }
 
