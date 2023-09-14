@@ -11,7 +11,7 @@ public class MISoundAddonKubeJSPlugin extends KubeJSPlugin {
 
     @Override
     public void initStartup() {
-        // KubeJS compat is disabled until MI officially supports it on this version
+        // Disabled while MI has issues with custom machines
         // KubeJSProxy.instance = new LoadedKubeJSProxy();
     }
 }
