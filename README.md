@@ -19,6 +19,7 @@ Additonal sounds were pulled from Freesound and attributed below:
 - **polarizer.ogg**: [Freesound](https://freesound.org/people/DeVern/sounds/346396/) - CC0
 - **pressurizer.ogg**: [Freesound](https://freesound.org/people/beerbelly38/sounds/77935/) - CC BY 4.0
 - **wiremill.ogg**: [Freesound](https://freesound.org/people/tim.kahn/sounds/622245/) - CC BY 4.0
+- **replicator.ogg**: [Freesound](https://freesound.org/people/GameAudio/sounds/220191/) - CC0
 
 The Fusion Reactor sound is pulled from [Mekanism](https://github.com/mekanism/mekanism) - MIT
 

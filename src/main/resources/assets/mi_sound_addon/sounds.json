@@ -160,5 +160,11 @@
     "sounds": [
       "mi_sound_addon:wrench"
     ]
+  },
+  "replicator": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:replicator"
+    ]
   }
 }
