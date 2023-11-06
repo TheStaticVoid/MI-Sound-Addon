@@ -65,10 +65,10 @@ public class SoundEventRegistry {
         setDuration("blast_furnace", 31);
         setDuration("centrifuge", 39);
         setDuration("chemical_reactor", 80);
-        setDuration("coke_oven", 33);
+        setDuration("coke_oven", 34);
         setDuration("compressor", 30);
         setDuration("cutting_machine", 68);
-        setDuration("distillation_tower", 110);
+        setDuration("distillation_tower", 109);
         setDuration("distillery", 71);
         setDuration("electric_blast_furnace", 61);
         setDuration("electrolyzer", 7);
@@ -79,9 +79,9 @@ public class SoundEventRegistry {
         setDuration("implosion_compressor", 70);
         setDuration("macerator", 16);
         setDuration("mixer", 27);
-        setDuration("oil_drilling_rig", 33);
+        setDuration("oil_drilling_rig", 29);
         setDuration("packer", 23);
-        setDuration("polarizer", 35);
+        setDuration("polarizer", 29);
         setDuration("pressurizer", 89);
         setDuration("quarry", 61);
         setDuration("unpacker", 23);
