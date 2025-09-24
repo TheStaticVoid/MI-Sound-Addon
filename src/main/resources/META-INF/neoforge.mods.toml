@@ -35,3 +35,10 @@ type = "optional"
 versionRange = "${kubejs_version_range}"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "extended_industrialization"
+type = "optional"
+versionRange = "${ei_version_range}"
+ordering = "AFTER"
+side = "BOTH"
