@@ -67,7 +67,12 @@ public class ModSounds {
     }
 
     public static int getDuration(MachineRecipe activeRecipe) {
-        return SOUND_EVENTS.get(getRecipeType(activeRecipe)).getSoundDuration();
+        // getSoundDuration will cause a crash if the recipe is added via addon
+        if (SOUND_EVENTS.get(getRecipeType(activeRecipe)) != null) {
+            return SOUND_EVENTS.get(getRecipeType(activeRecipe)).getSoundDuration();
+        } else {
+            return DEFAULT_SOUND_DURATION;
+        }
     }
 
     public static int getDurationFromString(String type) {
