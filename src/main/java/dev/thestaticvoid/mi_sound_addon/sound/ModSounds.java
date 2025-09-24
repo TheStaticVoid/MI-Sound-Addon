@@ -108,7 +108,7 @@ public class ModSounds {
             soundEventInfo = SOUND_EVENTS.get("electric_blast_furnace");
         }
 
-        if (soundEventInfo.getSoundEvent() != null) {
+        if (soundEventInfo != null && soundEventInfo.getSoundEvent() != null) {
             world.playSound(null, blockEntity.getBlockPos().getX(), blockEntity.getBlockPos().getY(),
                     blockEntity.getBlockPos().getZ(), soundEventInfo.getSoundEvent().get(), SoundSource.BLOCKS,
                     soundEventInfo.getVolume(), 1.0F);
