@@ -156,7 +156,11 @@ dependencies {
     compileOnly("dev.latvian.mods:kubejs-neoforge:${project.kubejs_version}")
 
     implementation "net.swedz:tesseract-api-neoforge:${project.tesseract_version}-${minecraft_version}"
-    implementation "net.swedz:extended-industrialization:${project.ei_version}-${minecraft_version}"
+
+    runtimeOnly "curse.maven:emi-580555:6420931"
+    // for testing Tesseract compatibility
+    runtimeOnly "net.swedz:extended-industrialization:${project.ei_version}-${minecraft_version}"
+    runtimeOnly "curse.maven:industrialization-overdrive-1089065:7024246"
 
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
