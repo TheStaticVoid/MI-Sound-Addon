@@ -25,16 +25,16 @@ repositories {
         }
     }
 
-    // for MI
-    exclusiveContent {
-        forRepository {
-            maven {
-                name = "Modrinth"
-                url = "https://api.modrinth.com/maven"
-            }
-        }
-        filter {
-            includeGroup "maven.modrinth"
+    maven {
+        name "Modmaven"
+        url "https://modmaven.dev"
+        content {
+            // GrandPower
+            includeGroup "dev.technici4n"
+            // Modern Industrialization
+            includeGroup "aztech"
+            // Tesseract
+            includeGroup "net.swedz"
         }
     }
 
@@ -151,9 +151,12 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}"
-    implementation("maven.modrinth:modern-industrialization:${project.mi_version}")
+    implementation "aztech:Modern-Industrialization:${project.mi_version}"
 
     compileOnly("dev.latvian.mods:kubejs-neoforge:${project.kubejs_version}")
+
+    implementation "net.swedz:tesseract-api-neoforge:${project.tesseract_version}-${minecraft_version}"
+    implementation "net.swedz:extended-industrialization:${project.ei_version}-${minecraft_version}"
 
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
