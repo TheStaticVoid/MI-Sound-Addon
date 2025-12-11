@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.thestaticvoid.mi_sound_addon.mixin",
+  "plugin": "dev.thestaticvoid.mi_sound_addon.mixin.MISoundAddonMixinPlugin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "mi_sound_addon.refmap.json",
   "mixins": [
@@ -9,7 +10,8 @@
     "NuclearReactorMultiblockBlockEntityMixin",
     "PipeBlockMixin",
     "ReplicatorMachineBlockEntityMixin",
-    "TickRecipeMixin"
+    "TickRecipeMixin",
+    "compat.tesseract_api.AbstractModularCrafterComponentMixin"
   ],
   "client": [
   ],
