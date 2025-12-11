@@ -158,33 +158,33 @@ public class ModSounds {
     }
 
     public static void updateVolumes() {
-        setVolume("assembler", (float) MISoundAddonConfig.assemblerVolume);
-        setVolume("blast_furnace", (float)MISoundAddonConfig.blastFurnaceVolume);
-        setVolume("centrifuge", (float)MISoundAddonConfig.centrifugeVolume);
-        setVolume("chemical_reactor", (float)MISoundAddonConfig.chemicalReactorVolume);
-        setVolume("coke_oven", (float) MISoundAddonConfig.cokeOvenVolume);
-        setVolume("compressor", (float)MISoundAddonConfig.compressorVolume);
-        setVolume("cutting_machine", (float)MISoundAddonConfig.cuttingMachineVolume);
-        setVolume("distillation_tower", (float)MISoundAddonConfig.distillationTowerVolume);
-        setVolume("distillery", (float)MISoundAddonConfig.distilleryVolume);
-        setVolume("electric_blast_furnace", (float)MISoundAddonConfig.electricBlastFurnaceVolume);
-        setVolume("electrolyzer", (float)MISoundAddonConfig.electrolyzerVolume);
-        setVolume("fission_reactor", (float)MISoundAddonConfig.fissionReactorVolume);
-        setVolume("fusion_reactor", (float)MISoundAddonConfig.fusionReactorVolume);
-        setVolume("furnace", (float)MISoundAddonConfig.furnaceVolume);
-        setVolume("heat_exchanger", (float)MISoundAddonConfig.heatExchangerVolume);
-        setVolume("implosion_compressor", (float)MISoundAddonConfig.implosionCompressorVolume);
-        setVolume("macerator", (float)MISoundAddonConfig.maceratorVolume);
-        setVolume("mixer", (float)MISoundAddonConfig.mixerVolume);
-        setVolume("oil_drilling_rig", (float)MISoundAddonConfig.oilDrillingRigVolume);
-        setVolume("packer", (float)MISoundAddonConfig.packerVolume);
-        setVolume("polarizer", (float)MISoundAddonConfig.polarizerVolume);
-        setVolume("pressurizer", (float)MISoundAddonConfig.pressurizerVolume);
-        setVolume("quarry", (float)MISoundAddonConfig.quarryVolume);
-        setVolume("unpacker", (float)MISoundAddonConfig.unpackerVolume);
-        setVolume("vacuum_freezer", (float)MISoundAddonConfig.vacuumFreezerVolume);
-        setVolume("wiremill", (float)MISoundAddonConfig.wiremillVolume);
-        setVolume("wrench", (float)MISoundAddonConfig.wrenchVolume);
-        setVolume("replicator", (float)MISoundAddonConfig.replicatorVolume);
+        setVolume("assembler", (float)MISoundAddonConfig.CONFIG.assemblerVolume.get().doubleValue());
+        setVolume("blast_furnace", (float)MISoundAddonConfig.CONFIG.blastFurnaceVolume.get().doubleValue());
+        setVolume("centrifuge", (float)MISoundAddonConfig.CONFIG.centrifugeVolume.get().doubleValue());
+        setVolume("chemical_reactor", (float)MISoundAddonConfig.CONFIG.chemicalReactorVolume.get().doubleValue());
+        setVolume("coke_oven", (float) MISoundAddonConfig.CONFIG.cokeOvenVolume.get().doubleValue());
+        setVolume("compressor", (float)MISoundAddonConfig.CONFIG.compressorVolume.get().doubleValue());
+        setVolume("cutting_machine", (float)MISoundAddonConfig.CONFIG.cuttingMachineVolume.get().doubleValue());
+        setVolume("distillation_tower", (float)MISoundAddonConfig.CONFIG.distillationTowerVolume.get().doubleValue());
+        setVolume("distillery", (float)MISoundAddonConfig.CONFIG.distilleryVolume.get().doubleValue());
+        setVolume("electric_blast_furnace", (float)MISoundAddonConfig.CONFIG.electricBlastFurnaceVolume.get().doubleValue());
+        setVolume("electrolyzer", (float)MISoundAddonConfig.CONFIG.electrolyzerVolume.get().doubleValue());
+        setVolume("fission_reactor", (float)MISoundAddonConfig.CONFIG.fissionReactorVolume.get().doubleValue());
+        setVolume("fusion_reactor", (float)MISoundAddonConfig.CONFIG.fusionReactorVolume.get().doubleValue());
+        setVolume("furnace", (float)MISoundAddonConfig.CONFIG.furnaceVolume.get().doubleValue());
+        setVolume("heat_exchanger", (float)MISoundAddonConfig.CONFIG.heatExchangerVolume.get().doubleValue());
+        setVolume("implosion_compressor", (float)MISoundAddonConfig.CONFIG.implosionCompressorVolume.get().doubleValue());
+        setVolume("macerator", (float)MISoundAddonConfig.CONFIG.maceratorVolume.get().doubleValue());
+        setVolume("mixer", (float)MISoundAddonConfig.CONFIG.mixerVolume.get().doubleValue());
+        setVolume("oil_drilling_rig", (float)MISoundAddonConfig.CONFIG.oilDrillingRigVolume.get().doubleValue());
+        setVolume("packer", (float)MISoundAddonConfig.CONFIG.packerVolume.get().doubleValue());
+        setVolume("polarizer", (float)MISoundAddonConfig.CONFIG.polarizerVolume.get().doubleValue());
+        setVolume("pressurizer", (float)MISoundAddonConfig.CONFIG.pressurizerVolume.get().doubleValue());
+        setVolume("quarry", (float)MISoundAddonConfig.CONFIG.quarryVolume.get().doubleValue());
+        setVolume("unpacker", (float)MISoundAddonConfig.CONFIG.unpackerVolume.get().doubleValue());
+        setVolume("vacuum_freezer", (float)MISoundAddonConfig.CONFIG.vacuumFreezerVolume.get().doubleValue());
+        setVolume("wiremill", (float)MISoundAddonConfig.CONFIG.wiremillVolume.get().doubleValue());
+        setVolume("wrench", (float)MISoundAddonConfig.CONFIG.wrenchVolume.get().doubleValue());
+        setVolume("replicator", (float)MISoundAddonConfig.CONFIG.replicatorVolume.get().doubleValue());
     }
 }

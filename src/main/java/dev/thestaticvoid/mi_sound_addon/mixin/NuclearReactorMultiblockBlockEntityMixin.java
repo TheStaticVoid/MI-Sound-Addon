@@ -37,7 +37,7 @@ public abstract class NuclearReactorMultiblockBlockEntityMixin extends Multibloc
             target = "Laztech/modern_industrialization/machines/components/IsActiveComponent;updateActive(ZLaztech/modern_industrialization/machines/MachineBlockEntity;)V",
             shift = At.Shift.AFTER), remap = false)
     private void tickMixin(CallbackInfo ci) {
-        if (isActive.isActive && MISoundAddonConfig.machineSoundsEnabled) {
+        if (isActive.isActive && MISoundAddonConfig.CONFIG.machineSoundsEnabled.get()) {
             MachineBlockEntity blockEntity = this;
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;

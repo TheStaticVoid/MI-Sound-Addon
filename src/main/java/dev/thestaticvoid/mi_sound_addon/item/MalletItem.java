@@ -38,7 +38,7 @@ public class MalletItem extends Item {
         }
 
         if (stackInHand.getItem() instanceof MalletItem) {
-            Objects.requireNonNull(be.getLevel()).playSound(null, be.getBlockPos(), SoundEvents.ANVIL_USE, SoundSource.BLOCKS, (float)MISoundAddonConfig.wrenchVolume, 1.0f);
+            Objects.requireNonNull(be.getLevel()).playSound(null, be.getBlockPos(), SoundEvents.ANVIL_USE, SoundSource.BLOCKS, (float)MISoundAddonConfig.CONFIG.wrenchVolume.get().doubleValue(), 1.0f);
             return ItemInteractionResult.SUCCESS;
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

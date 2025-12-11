@@ -26,7 +26,7 @@ public class MISoundAddon {
         ModItems.init(modEventBus);
         ModSounds.init(modEventBus);
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, MISoundAddonConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, MISoundAddonConfig.CONFIG_SPEC);
         KubeJSProxy.instance.fireSoundModificationsEvent();
 
         LOGGER.info("Modern Industrialization Sound Addon initialized.");

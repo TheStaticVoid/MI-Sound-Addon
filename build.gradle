@@ -152,6 +152,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 dependencies {
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}"
     implementation("maven.modrinth:modern-industrialization:${project.mi_version}")
+    implementation("maven.modrinth:guideme:${project.guideme_version}")
 
     compileOnly("dev.latvian.mods:kubejs-neoforge:${project.kubejs_version}")
 
@@ -196,6 +197,7 @@ tasks.withType(ProcessResources).configureEach {
             mod_description        : mod_description,
             kubejs_version_range   : kubejs_version_range,
             mi_version_range       : mi_version_range,
+            guideme_version_range  : guideme_version_range,
             mod_github_link        : mod_github_link,
             ei_version_range       : ei_version_range
     ]

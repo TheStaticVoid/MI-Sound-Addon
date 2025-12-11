@@ -31,7 +31,7 @@ public abstract class ReplicatorMachineBlockEntityMixin extends MachineBlockEnti
             target = "Laztech/modern_industrialization/machines/components/IsActiveComponent;updateActive(ZLaztech/modern_industrialization/machines/MachineBlockEntity;)V",
             ordinal = 1, shift = At.Shift.BEFORE), remap = false)
     private void tickMixin(CallbackInfo ci) {
-        if (MISoundAddonConfig.machineSoundsEnabled) {
+        if (MISoundAddonConfig.CONFIG.machineSoundsEnabled.get()) {
             MachineBlockEntity blockEntity = ((ReplicatorMachineBlockEntity)(Object)this);
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;

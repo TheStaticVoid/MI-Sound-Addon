@@ -1,10 +1,10 @@
 package dev.thestaticvoid.mi_sound_addon.util;
 
-import aztech.modern_industrialization.machines.IComponent;
+import aztech.modern_industrialization.machines.MachineComponent;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 
-public class SilencedComponent implements IComponent {
+public class SilencedComponent implements MachineComponent {
     public boolean silenced = false;
 
     @Override

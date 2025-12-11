@@ -3,7 +3,7 @@ package dev.thestaticvoid.mi_sound_addon.mixin;
 import aztech.modern_industrialization.blocks.FastBlockEntity;
 import aztech.modern_industrialization.blocks.WrenchableBlockEntity;
 import aztech.modern_industrialization.machines.BEP;
-import aztech.modern_industrialization.machines.IComponent;
+import aztech.modern_industrialization.machines.MachineComponent;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
@@ -35,7 +35,7 @@ public abstract class MachineBlockEntityMixin extends FastBlockEntity
     }
 
     @Shadow(remap = false)
-    protected abstract void registerComponents(IComponent... components);
+    protected abstract void registerComponents(MachineComponent... components);
 
     @Unique
     public SilencedComponent silencedComp;

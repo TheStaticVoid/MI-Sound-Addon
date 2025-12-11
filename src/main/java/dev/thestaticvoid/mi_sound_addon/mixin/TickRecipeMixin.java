@@ -1,6 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
-import aztech.modern_industrialization.machines.IComponent;
+import aztech.modern_industrialization.machines.MachineComponent;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.components.CrafterComponent;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.Objects;
 
 @Mixin(CrafterComponent.class)
-public abstract class TickRecipeMixin implements IComponent.ServerOnly {
+public abstract class TickRecipeMixin implements MachineComponent.ServerOnly {
     @Unique
     public long lastSoundTime = 0;
 
@@ -31,7 +31,7 @@ public abstract class TickRecipeMixin implements IComponent.ServerOnly {
 
     @Inject(method = "tickRecipe", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
     private void tickRecipeInjection(CallbackInfoReturnable<Boolean> cir, boolean isActive) {
-        if (MISoundAddonConfig.machineSoundsEnabled) {
+        if (MISoundAddonConfig.CONFIG.machineSoundsEnabled.get()) {
             MachineBlockEntity blockEntity = this.conditionContext.getBlockEntity();
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;
