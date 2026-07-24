@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
+import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.blockentities.multiblocks.NuclearReactorMultiblockBlockEntity;
@@ -43,9 +44,9 @@ public abstract class NuclearReactorMultiblockBlockEntityMixin extends Multibloc
             if (silencedState.silenced) return;
             long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
-            if (currentGameTime > lastSoundTime + ModSounds.getDurationFromString("fission_reactor")) {
+            if (currentGameTime > lastSoundTime + ModSounds.getDurationFromString(MI.id("fission_reactor"))) {
                 lastSoundTime = currentGameTime;
-                ModSounds.playSoundNoRecipe(blockEntity, "fission_reactor");
+                ModSounds.playSoundNoRecipe(blockEntity, MI.id("fission_reactor"));
             }
         }
     }
