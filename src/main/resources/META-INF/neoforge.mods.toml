@@ -44,7 +44,7 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies."${mod_id}"]]
-modId = "industrial_overdrive"
+modId = "industrialization_overdrive"
 type = "optional"
 versionRange = "${io_version_range}"
 ordering = "AFTER"

@@ -27,11 +27,7 @@ public class MISoundAddonMixinPlugin implements IMixinConfigPlugin {
             return MISoundAddon.checkModIsLoaded("tesseract_api");
         }
 
-        if (mixinClassName.equals("dev.thestaticvoid.mi_sound_addon.mixin.compat.extended_industrialization.TeslaTowerBlockEntityMixin")) {
-            return MISoundAddon.checkModIsLoaded("extended_industrialization");
-        }
-
-        if (mixinClassName.equals("dev.thestaticvoid.mi_sound_addon.mixin.compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin")) {
+        if (mixinClassName.contains("extended_industrialization")) {
             return MISoundAddon.checkModIsLoaded("extended_industrialization");
         }
         return true;

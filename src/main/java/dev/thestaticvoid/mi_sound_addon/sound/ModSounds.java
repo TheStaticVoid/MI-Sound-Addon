@@ -7,6 +7,7 @@ import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
+import dev.wp.industrialization_overdrive.IO;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -166,16 +167,16 @@ public class ModSounds {
         setDuration(MI.id("replicator"), 20);
 
         if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
-            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), 97);
-            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), 38);
-            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), 30);
-            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), 69); // nice
-            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "brewery"), 80);
-            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla.loop"), 45);
-            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla_tower"), 89);
+            setDuration(EI.id("composter"), 97);
+            setDuration(EI.id("alloy_smelter"), 38);
+            setDuration(EI.id("bending_machine"), 30);
+            setDuration(EI.id("canning_machine"), 69); // nice
+            setDuration(EI.id("brewery"), 80);
+            setDuration(EI.id("tesla.loop"), 45);
+            setDuration(EI.id("tesla_tower"), 89);
         }
         if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {
-            setDuration(ResourceLocation.fromNamespaceAndPath("industrialization_overdrive", "pyrolyse_oven"), 80);
+            setDuration(IO.id("pyrolyse_oven"), 80);
         }
     }
 
@@ -210,16 +211,16 @@ public class ModSounds {
         setVolume(MI.id("config_card"), (float)MISoundAddonConfig.CONFIG.configCardVolume.get().doubleValue());
         setVolume(MI.id("replicator"), (float)MISoundAddonConfig.CONFIG.replicatorVolume.get().doubleValue());
         if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
-            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), (float)MISoundAddonConfig.CONFIG.composterVolume.get().doubleValue());
-            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), (float)MISoundAddonConfig.CONFIG.alloySmelterVolume.get().doubleValue());
-            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), (float)MISoundAddonConfig.CONFIG.bendingMachineVolume.get().doubleValue());
-            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), (float)MISoundAddonConfig.CONFIG.canningMachineVolume.get().doubleValue());
-            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla.loop"), (float)MISoundAddonConfig.CONFIG.teslaCoilVolume.get().doubleValue());
-            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla_tower"), (float)MISoundAddonConfig.CONFIG.teslaTowerVolume.get().doubleValue());
+            setVolume(EI.id("composter"), (float)MISoundAddonConfig.CONFIG.composterVolume.get().doubleValue());
+            setVolume(EI.id("alloy_smelter"), (float)MISoundAddonConfig.CONFIG.alloySmelterVolume.get().doubleValue());
+            setVolume(EI.id("bending_machine"), (float)MISoundAddonConfig.CONFIG.bendingMachineVolume.get().doubleValue());
+            setVolume(EI.id("canning_machine"), (float)MISoundAddonConfig.CONFIG.canningMachineVolume.get().doubleValue());
+            setVolume(EI.id("tesla.loop"), (float)MISoundAddonConfig.CONFIG.teslaCoilVolume.get().doubleValue());
+            setVolume(EI.id("tesla_tower"), (float)MISoundAddonConfig.CONFIG.teslaTowerVolume.get().doubleValue());
         }
 
         if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {
-            setVolume(ResourceLocation.fromNamespaceAndPath("industrialization_overdrive", "pyrolyse_oven"), (float)MISoundAddonConfig.CONFIG.pyrolyseOvenVolume.get().doubleValue());
+            setVolume(IO.id("pyrolyse_oven"), (float)MISoundAddonConfig.CONFIG.pyrolyseOvenVolume.get().doubleValue());
         }
     }
 }

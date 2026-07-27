@@ -15,6 +15,7 @@
     "UpgradeComponentMixin",
     "compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin",
     "compat.extended_industrialization.TeslaTowerBlockEntityMixin",
+    "compat.extended_industrialization.TeslaTowerUpgradeComponentMixin",
     "compat.tesseract_api.AbstractModularCrafterComponentMixin"
   ],
   "client": [

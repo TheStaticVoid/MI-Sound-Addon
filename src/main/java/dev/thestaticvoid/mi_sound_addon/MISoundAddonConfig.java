@@ -16,6 +16,7 @@ public final class MISoundAddonConfig {
 
     public final ModConfigSpec.ConfigValue<Boolean> machineSoundsEnabled;
     public final ModConfigSpec.ConfigValue<Boolean> wrenchSoundsEnabled;
+    public final ModConfigSpec.ConfigValue<Boolean> configCardSoundsEnabled;
     public final ModConfigSpec.ConfigValue<Double> assemblerVolume;
     public final ModConfigSpec.ConfigValue<Double> blastFurnaceVolume;
     public final ModConfigSpec.ConfigValue<Double> centrifugeVolume;
@@ -56,6 +57,7 @@ public final class MISoundAddonConfig {
     private MISoundAddonConfig(ModConfigSpec.Builder builder) {
         machineSoundsEnabled = builder.define("machine_sounds_enabled", true);
         wrenchSoundsEnabled = builder.define("wrench_sounds_enabled", true);
+        configCardSoundsEnabled = builder.define("config_card_sounds_enabled", true);
         assemblerVolume = builder
                 .comment("Assembler Volume")
                 .defineInRange("assembler_volume", 1.0, 0.0, 5.0);
