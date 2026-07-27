@@ -161,10 +161,46 @@
       "mi_sound_addon:modern_industrialization/wrench"
     ]
   },
+  "modern_industrialization/config_card": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:modern_industrialization/config_card"
+    ]
+  },
   "modern_industrialization/replicator": {
     "category": "block",
     "sounds": [
       "mi_sound_addon:modern_industrialization/replicator"
+    ]
+  },
+  "extended_industrialization/composter": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:extended_industrialization/composter"
+    ]
+  },
+  "extended_industrialization/alloy_smelter": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:extended_industrialization/alloy_smelter"
+    ]
+  },
+  "extended_industrialization/bending_machine": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:extended_industrialization/bending_machine"
+    ]
+  },
+  "extended_industrialization/canning_machine": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:extended_industrialization/canning_machine"
+    ]
+  },
+  "extended_industrialization/brewery": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:extended_industrialization/brewery"
     ]
   }
 }

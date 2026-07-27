@@ -3,6 +3,7 @@ package dev.thestaticvoid.mi_sound_addon.mixin;
 import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.pipes.impl.PipeBlock;
 import aztech.modern_industrialization.pipes.impl.PipeBlockEntity;
+import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSoundEventInfo;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import net.minecraft.sounds.SoundSource;
@@ -22,8 +23,10 @@ public class PipeBlockMixin {
     private static void useWrenchMixin(PipeBlockEntity pipe, Player player, InteractionHand hand, BlockHitResult hit, CallbackInfoReturnable<Boolean> cir) {
         // This should be fine as the method will return true if it reaches the point it would play sounds anyway
         // However if MI updates and adds extra stuff beyond the last if statement, this could break
-        ModSoundEventInfo wrenchEvent = ModSounds.SOUND_EVENTS.get(MI.id("wrench"));
-        pipe.getLevel().playSound(player, pipe.getBlockPos(), wrenchEvent.getSoundEvent().get(), SoundSource.BLOCKS, wrenchEvent.getVolume(), 1.0F);
-        cir.setReturnValue(true);
+        if (MISoundAddonConfig.CONFIG.wrenchSoundsEnabled.get()) {
+            ModSoundEventInfo wrenchEvent = ModSounds.SOUND_EVENTS.get(MI.id("wrench"));
+            pipe.getLevel().playSound(player, pipe.getBlockPos(), wrenchEvent.getSoundEvent().get(), SoundSource.BLOCKS, wrenchEvent.getVolume(), 1.0F);
+            cir.setReturnValue(true);
+        }
     }
 }

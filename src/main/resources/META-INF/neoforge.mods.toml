@@ -42,3 +42,10 @@ type = "optional"
 versionRange = "${ei_version_range}"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "industrial_overdrive"
+type = "optional"
+versionRange = "${io_version_range}"
+ordering = "AFTER"
+side = "BOTH"

@@ -65,6 +65,12 @@ repositories {
         }
     }
 
+    // FOR EMI
+    maven {
+        name = "Sleeping Town"
+        url = "https://repo.sleeping.town"
+    }
+
     mavenLocal()
 }
 
@@ -161,9 +167,9 @@ dependencies {
     implementation "net.swedz:tesseract-api-neoforge:${project.tesseract_version}-${minecraft_version}"
 
 
-    runtimeOnly "curse.maven:emi-580555:6420931"
-    // for testing Tesseract compatibility
+    runtimeOnly "dev.emi:emi-neoforge:${project.emi_version}+${minecraft_version}"
     runtimeOnly "net.swedz:extended-industrialization:${project.ei_version}-${minecraft_version}"
+    // preferably dont want to use the curse snippet here but there is not a proper maven setup for IO
     runtimeOnly "curse.maven:industrialization-overdrive-1089065:7281011"
 
     // Example mod dependency with JEI
@@ -209,7 +215,8 @@ tasks.withType(ProcessResources).configureEach {
             mi_version_range       : mi_version_range,
             guideme_version_range  : guideme_version_range,
             mod_github_link        : mod_github_link,
-            ei_version_range       : ei_version_range
+            ei_version_range       : ei_version_range,
+            io_version_range       : io_version_range,
     ]
     inputs.properties replaceProperties
 

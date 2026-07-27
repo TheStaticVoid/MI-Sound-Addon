@@ -42,6 +42,7 @@ public class ModSounds {
         addSoundEvent(MI.id("electric_blast_furnace"));
         addSoundEvent(MI.id("fission_reactor"));
         addSoundEvent(MI.id("wrench"));
+        addSoundEvent(MI.id("config_card"));
         addSoundEvent(MI.id("replicator"));
         updateDurations();
     }
@@ -154,6 +155,15 @@ public class ModSounds {
         setDuration(MI.id("vacuum_freezer"), 62);
         setDuration(MI.id("wiremill"), 45);
         setDuration(MI.id("replicator"), 20);
+
+        // TODO:
+        // mod ID is hardcoded for now, but preferably it would use it's ID builder
+        // Since EI is not required for this mod to work, can't guarantee it will exist
+        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), 97);
+        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), 38);
+        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), 30);
+        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), 69); // nice
+        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "brewery"), 80);
     }
 
     public static void updateVolumes() {
@@ -184,6 +194,14 @@ public class ModSounds {
         setVolume(MI.id("vacuum_freezer"), (float)MISoundAddonConfig.CONFIG.vacuumFreezerVolume.get().doubleValue());
         setVolume(MI.id("wiremill"), (float)MISoundAddonConfig.CONFIG.wiremillVolume.get().doubleValue());
         setVolume(MI.id("wrench"), (float)MISoundAddonConfig.CONFIG.wrenchVolume.get().doubleValue());
+        setVolume(MI.id("config_card"), (float)MISoundAddonConfig.CONFIG.configCardVolume.get().doubleValue());
         setVolume(MI.id("replicator"), (float)MISoundAddonConfig.CONFIG.replicatorVolume.get().doubleValue());
+        // TODO
+        // Again, similar to the set duration segment, this namespace should not be hardcoded, but the mod isn't required
+        // so need to figure out how to check if it exists before attempting to reference it's ID builder.
+        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), (float)MISoundAddonConfig.CONFIG.composterVolume.get().doubleValue());
+        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), (float)MISoundAddonConfig.CONFIG.alloySmelterVolume.get().doubleValue());
+        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), (float)MISoundAddonConfig.CONFIG.bendingMachineVolume.get().doubleValue());
+        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), (float)MISoundAddonConfig.CONFIG.canningMachineVolume.get().doubleValue());
     }
 }

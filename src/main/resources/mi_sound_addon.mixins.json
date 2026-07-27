@@ -11,7 +11,8 @@
     "PipeBlockMixin",
     "ReplicatorMachineBlockEntityMixin",
     "TickRecipeMixin",
-    "compat.tesseract_api.AbstractModularCrafterComponentMixin"
+    "compat.tesseract_api.AbstractModularCrafterComponentMixin",
+    "ItemNetworkNodeMixin"
   ],
   "client": [
   ],

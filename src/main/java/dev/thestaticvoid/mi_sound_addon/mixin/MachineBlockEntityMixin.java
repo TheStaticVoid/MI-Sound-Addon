@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
+import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.blocks.FastBlockEntity;
 import aztech.modern_industrialization.blocks.WrenchableBlockEntity;
 import aztech.modern_industrialization.machines.BEP;
@@ -7,18 +8,23 @@ import aztech.modern_industrialization.machines.MachineComponent;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
+import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.item.MalletItem;
+import dev.thestaticvoid.mi_sound_addon.sound.ModSoundEventInfo;
+import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponentInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -58,6 +64,15 @@ public abstract class MachineBlockEntityMixin extends FastBlockEntity
             }
         }
         cir.setReturnValue(result);
+    }
+
+    @Inject(method = "useWrench", at = @At("HEAD"), remap = false)
+    private void useWrenchMixin(Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<Boolean> cir) {
+        if (MISoundAddonConfig.CONFIG.wrenchSoundsEnabled.get()) {
+            MachineBlockEntity blockEntity = ((MachineBlockEntity)(Object)this);
+            ModSoundEventInfo wrenchEvent = ModSounds.SOUND_EVENTS.get(MI.id("wrench"));
+            blockEntity.getLevel().playSound(player, blockEntity.getBlockPos(), wrenchEvent.getSoundEvent().get(), SoundSource.BLOCKS, wrenchEvent.getVolume(), 1.0F);
+        }
     }
 
     @Override
