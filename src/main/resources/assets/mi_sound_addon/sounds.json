@@ -2,169 +2,169 @@
   "assembler": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:assembler"
+      "mi_sound_addon:modern_industrialization/assembler"
     ]
   },
   "centrifuge": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:centrifuge"
+      "mi_sound_addon:modern_industrialization/centrifuge"
     ]
   },
   "chemical_reactor": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:chemical_reactor"
+      "mi_sound_addon:modern_industrialization/chemical_reactor"
     ]
   },
   "compressor": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:compressor"
+      "mi_sound_addon:modern_industrialization/compressor"
     ]
   },
   "distillery": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:distillery"
+      "mi_sound_addon:modern_industrialization/distillery"
     ]
   },
   "cutting_machine": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:cutting_machine"
+      "mi_sound_addon:modern_industrialization/cutting_machine"
     ]
   },
   "electrolyzer": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:electrolyzer"
+      "mi_sound_addon:modern_industrialization/electrolyzer"
     ]
   },
   "furnace": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:furnace"
+      "mi_sound_addon:modern_industrialization/furnace"
     ]
   },
   "macerator": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:macerator"
+      "mi_sound_addon:modern_industrialization/macerator"
     ]
   },
   "mixer": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:mixer"
+      "mi_sound_addon:modern_industrialization/mixer"
     ]
   },
   "packer": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:packer"
+      "mi_sound_addon:modern_industrialization/packer"
     ]
   },
   "polarizer": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:polarizer"
+      "mi_sound_addon:modern_industrialization/polarizer"
     ]
   },
   "unpacker": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:unpacker"
+      "mi_sound_addon:modern_industrialization/unpacker"
     ]
   },
   "wiremill": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:wiremill"
+      "mi_sound_addon:modern_industrialization/wiremill"
     ]
   },
   "blast_furnace": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:blast_furnace"
+      "mi_sound_addon:modern_industrialization/blast_furnace"
     ]
   },
   "electric_blast_furnace": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:electric_blast_furnace"
+      "mi_sound_addon:modern_industrialization/electric_blast_furnace"
     ]
   },
   "coke_oven": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:coke_oven"
+      "mi_sound_addon:modern_industrialization/coke_oven"
     ]
   },
   "distillation_tower": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:distillation_tower"
+      "mi_sound_addon:modern_industrialization/distillation_tower"
     ]
   },
   "fusion_reactor": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:fusion_reactor"
+      "mi_sound_addon:modern_industrialization/fusion_reactor"
     ]
   },
   "fission_reactor": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:fission_reactor"
+      "mi_sound_addon:modern_industrialization/fission_reactor"
     ]
   },
   "heat_exchanger": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:heat_exchanger"
+      "mi_sound_addon:modern_industrialization/heat_exchanger"
     ]
   },
   "implosion_compressor": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:implosion_compressor"
+      "mi_sound_addon:modern_industrialization/implosion_compressor"
     ]
   },
   "oil_drilling_rig": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:oil_drilling_rig"
+      "mi_sound_addon:modern_industrialization/oil_drilling_rig"
     ]
   },
   "pressurizer": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:pressurizer"
+      "mi_sound_addon:modern_industrialization/pressurizer"
     ]
   },
   "quarry": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:quarry"
+      "mi_sound_addon:modern_industrialization/quarry"
     ]
   },
   "vacuum_freezer": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:vacuum_freezer"
+      "mi_sound_addon:modern_industrialization/vacuum_freezer"
     ]
   },
   "wrench": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:wrench"
+      "mi_sound_addon:modern_industrialization/wrench"
     ]
   },
   "replicator": {
     "category": "block",
     "sounds": [
-      "mi_sound_addon:replicator"
+      "mi_sound_addon:modern_industrialization/replicator"
     ]
   }
 }

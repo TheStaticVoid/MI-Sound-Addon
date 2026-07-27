@@ -29,9 +29,6 @@ public class ModSounds {
     public static void init(IEventBus bus) {
         MISoundAddon.LOGGER.debug("Registering sounds for " + MISoundAddon.MOD_ID);
         populateDefaultRecipeTypes(MIMachineRecipeTypes.getRecipeTypes());
-        for (MachineRecipeType mrt : MIMachineRecipeTypes.getRecipeTypes()) {
-            MISoundAddon.LOGGER.debug(mrt.getId().toString());
-        }
         SOUND_EVENTS_REGISTRY.register(bus);
     }
 
@@ -61,6 +58,7 @@ public class ModSounds {
         ResourceLocation identifier = MISoundAddon.id(type.getNamespace() + "/" + type.getPath());
         Supplier<SoundEvent> soundEvent = SOUND_EVENTS_REGISTRY.register(identifier.getPath(), () -> SoundEvent.createVariableRangeEvent(identifier));
         SOUND_EVENTS.put(type, new ModSoundEventInfo(soundEvent, duration, volume));
+        MISoundAddon.LOGGER.debug("Sound registered: " + identifier);
     }
 
     private static ResourceLocation getRecipeType(@NotNull MachineRecipe activeRecipe) {
