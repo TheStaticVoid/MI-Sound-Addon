@@ -64,9 +64,9 @@ public abstract class MachineBlockEntityMixin extends FastBlockEntity
         cir.setReturnValue(result);
     }
 
-    @Inject(method = "useWrench", at = @At("HEAD"), remap = false)
+    @Inject(method = "useWrench", at = @At("RETURN"), remap = false)
     private void useWrenchMixin(Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<Boolean> cir) {
-        if (MISoundAddonConfig.CONFIG.wrenchSoundsEnabled.get()) {
+        if (cir.getReturnValue() && MISoundAddonConfig.CONFIG.wrenchSoundsEnabled.get()) {
             MachineBlockEntity blockEntity = ((MachineBlockEntity)(Object)this);
             ModSounds.playSoundNoRecipe(blockEntity, MI.id("wrench"));
         }
