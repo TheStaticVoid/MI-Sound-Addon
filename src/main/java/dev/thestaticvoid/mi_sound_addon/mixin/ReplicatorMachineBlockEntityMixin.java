@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
+import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.blockentities.ReplicatorMachineBlockEntity;
@@ -37,9 +38,9 @@ public abstract class ReplicatorMachineBlockEntityMixin extends MachineBlockEnti
             if (silencedState.silenced) return;
             long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
-            if (currentGameTime > lastSoundTime + ModSounds.getDurationFromString("replicator")) {
+            if (currentGameTime > lastSoundTime + ModSounds.getDurationFromString(MI.id("replicator"))) {
                 lastSoundTime = currentGameTime;
-                ModSounds.playSoundNoRecipe(blockEntity, "replicator");
+                ModSounds.playSoundNoRecipe(blockEntity, MI.id("replicator"));
             }
         }
     }

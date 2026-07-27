@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.sound;
 
+import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.init.MIMachineRecipeTypes;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
@@ -21,49 +22,47 @@ import java.util.function.Supplier;
 
 public class ModSounds {
     private static final DeferredRegister<SoundEvent> SOUND_EVENTS_REGISTRY = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, MISoundAddon.MOD_ID);
-    public static HashMap<String, ModSoundEventInfo> SOUND_EVENTS = new HashMap<>();
+    public static HashMap<ResourceLocation, ModSoundEventInfo> SOUND_EVENTS = new HashMap<>();
 
     private static final int DEFAULT_SOUND_DURATION = 60; // measured in ticks
 
     public static void init(IEventBus bus) {
         MISoundAddon.LOGGER.debug("Registering sounds for " + MISoundAddon.MOD_ID);
         populateDefaultRecipeTypes(MIMachineRecipeTypes.getRecipeTypes());
-        for (MachineRecipeType mrt : MIMachineRecipeTypes.getRecipeTypes()) {
-            MISoundAddon.LOGGER.debug(mrt.getPath());
-        }
         SOUND_EVENTS_REGISTRY.register(bus);
     }
 
     public static void populateDefaultRecipeTypes(List<MachineRecipeType> machineRecipeTypes) {
         for (MachineRecipeType mrt : machineRecipeTypes) {
-            String type = mrt.getPath();
-            if (type.equals("forge_hammer")) continue;
+            ResourceLocation type = mrt.getId();
+            if (type.equals(MI.id("forge_hammer"))) continue;
             addSoundEvent(type);
         }
 
-        addSoundEvent("electric_blast_furnace");
-        addSoundEvent("fission_reactor");
-        addSoundEvent("wrench");
-        addSoundEvent("replicator");
+        addSoundEvent(MI.id("electric_blast_furnace"));
+        addSoundEvent(MI.id("fission_reactor"));
+        addSoundEvent(MI.id("wrench"));
+        addSoundEvent(MI.id("replicator"));
         updateDurations();
     }
 
-    public static void addSoundEvent(String type) {
+    public static void addSoundEvent(ResourceLocation type) {
         addSoundEvent(type, 1.0F);
     }
 
-    public static void addSoundEvent(String type, float volume) {
+    public static void addSoundEvent(ResourceLocation type, float volume) {
         addSoundEvent(type, volume, DEFAULT_SOUND_DURATION);
     }
 
-    public static void addSoundEvent(String type, float volume, int duration) {
-        ResourceLocation identifier = MISoundAddon.id(type);
-        Supplier<SoundEvent> soundEvent = SOUND_EVENTS_REGISTRY.register(type, () -> SoundEvent.createVariableRangeEvent(identifier));
+    public static void addSoundEvent(ResourceLocation type, float volume, int duration) {
+        ResourceLocation identifier = MISoundAddon.id(type.getNamespace() + "/" + type.getPath());
+        Supplier<SoundEvent> soundEvent = SOUND_EVENTS_REGISTRY.register(identifier.getPath(), () -> SoundEvent.createVariableRangeEvent(identifier));
         SOUND_EVENTS.put(type, new ModSoundEventInfo(soundEvent, duration, volume));
+        MISoundAddon.LOGGER.debug("Sound registered: " + identifier);
     }
 
-    private static String getRecipeType(@NotNull MachineRecipe activeRecipe) {
-        return ((MachineRecipeType) activeRecipe.getType()).getPath();
+    private static ResourceLocation getRecipeType(@NotNull MachineRecipe activeRecipe) {
+        return ((MachineRecipeType) activeRecipe.getType()).getId();
     }
 
     public static int getDuration(MachineRecipe activeRecipe) {
@@ -75,11 +74,11 @@ public class ModSounds {
         }
     }
 
-    public static int getDurationFromString(String type) {
+    public static int getDurationFromString(ResourceLocation type) {
         return SOUND_EVENTS.get(type).getSoundDuration();
     }
 
-    public static void setDuration(String type, int duration) {
+    public static void setDuration(ResourceLocation type, int duration) {
         if (ModSounds.SOUND_EVENTS.containsKey(type)) {
             ModSounds.SOUND_EVENTS.get(type).setSoundDuration(duration);
         } else {
@@ -87,7 +86,7 @@ public class ModSounds {
         }
     }
 
-    public static void setVolume(String type, float volume) {
+    public static void setVolume(ResourceLocation type, float volume) {
         if (ModSounds.SOUND_EVENTS.containsKey(type)) {
             ModSounds.SOUND_EVENTS.get(type).setVolume(volume);
         } else {
@@ -102,10 +101,10 @@ public class ModSounds {
 
         ModSoundEventInfo soundEventInfo;
 
-        if (!blockEntity.guiParams.blockId.getPath().equals("electric_blast_furnace")) {
+        if (!blockEntity.guiParams.blockId.equals(MI.id("electric_blast_furnace"))) {
             soundEventInfo = SOUND_EVENTS.get(getRecipeType(activeRecipe));
         } else {
-            soundEventInfo = SOUND_EVENTS.get("electric_blast_furnace");
+            soundEventInfo = SOUND_EVENTS.get(MI.id("electric_blast_furnace"));
         }
 
         if (soundEventInfo != null && soundEventInfo.getSoundEvent() != null) {
@@ -115,7 +114,7 @@ public class ModSounds {
         }
     }
 
-    public static void playSoundNoRecipe(@NotNull MachineBlockEntity blockEntity, String type) {
+    public static void playSoundNoRecipe(@NotNull MachineBlockEntity blockEntity, ResourceLocation type) {
         Level world = blockEntity.getLevel();
         if (world == null) { return; }
 
@@ -128,63 +127,63 @@ public class ModSounds {
     }
 
     private static void updateDurations() {
-        setDuration("assembler", 39);
-        setDuration("blast_furnace", 31);
-        setDuration("centrifuge", 39);
-        setDuration("chemical_reactor", 80);
-        setDuration("coke_oven", 34);
-        setDuration("compressor", 30);
-        setDuration("cutting_machine", 68);
-        setDuration("distillation_tower", 109);
-        setDuration("distillery", 71);
-        setDuration("electric_blast_furnace", 61);
-        setDuration("electrolyzer", 7);
-        setDuration("fission_reactor", 60);
-        setDuration("fusion_reactor", 67);
-        setDuration("furnace", 38);
-        setDuration("heat_exchanger", 71);
-        setDuration("implosion_compressor", 70);
-        setDuration("macerator", 16);
-        setDuration("mixer", 27);
-        setDuration("oil_drilling_rig", 29);
-        setDuration("packer", 23);
-        setDuration("polarizer", 29);
-        setDuration("pressurizer", 89);
-        setDuration("quarry", 61);
-        setDuration("unpacker", 23);
-        setDuration("vacuum_freezer", 62);
-        setDuration("wiremill", 45);
-        setDuration("replicator", 20);
+        setDuration(MI.id("assembler"), 39);
+        setDuration(MI.id("blast_furnace"), 31);
+        setDuration(MI.id("centrifuge"), 39);
+        setDuration(MI.id("chemical_reactor"), 80);
+        setDuration(MI.id("coke_oven"), 34);
+        setDuration(MI.id("compressor"), 30);
+        setDuration(MI.id("cutting_machine"), 68);
+        setDuration(MI.id("distillation_tower"), 109);
+        setDuration(MI.id("distillery"), 71);
+        setDuration(MI.id("electric_blast_furnace"), 61);
+        setDuration(MI.id("electrolyzer"), 7);
+        setDuration(MI.id("fission_reactor"), 60);
+        setDuration(MI.id("fusion_reactor"), 67);
+        setDuration(MI.id("furnace"), 38);
+        setDuration(MI.id("heat_exchanger"), 71);
+        setDuration(MI.id("implosion_compressor"), 70);
+        setDuration(MI.id("macerator"), 16);
+        setDuration(MI.id("mixer"), 27);
+        setDuration(MI.id("oil_drilling_rig"), 29);
+        setDuration(MI.id("packer"), 23);
+        setDuration(MI.id("polarizer"), 29);
+        setDuration(MI.id("pressurizer"), 89);
+        setDuration(MI.id("quarry"), 61);
+        setDuration(MI.id("unpacker"), 23);
+        setDuration(MI.id("vacuum_freezer"), 62);
+        setDuration(MI.id("wiremill"), 45);
+        setDuration(MI.id("replicator"), 20);
     }
 
     public static void updateVolumes() {
-        setVolume("assembler", (float)MISoundAddonConfig.CONFIG.assemblerVolume.get().doubleValue());
-        setVolume("blast_furnace", (float)MISoundAddonConfig.CONFIG.blastFurnaceVolume.get().doubleValue());
-        setVolume("centrifuge", (float)MISoundAddonConfig.CONFIG.centrifugeVolume.get().doubleValue());
-        setVolume("chemical_reactor", (float)MISoundAddonConfig.CONFIG.chemicalReactorVolume.get().doubleValue());
-        setVolume("coke_oven", (float) MISoundAddonConfig.CONFIG.cokeOvenVolume.get().doubleValue());
-        setVolume("compressor", (float)MISoundAddonConfig.CONFIG.compressorVolume.get().doubleValue());
-        setVolume("cutting_machine", (float)MISoundAddonConfig.CONFIG.cuttingMachineVolume.get().doubleValue());
-        setVolume("distillation_tower", (float)MISoundAddonConfig.CONFIG.distillationTowerVolume.get().doubleValue());
-        setVolume("distillery", (float)MISoundAddonConfig.CONFIG.distilleryVolume.get().doubleValue());
-        setVolume("electric_blast_furnace", (float)MISoundAddonConfig.CONFIG.electricBlastFurnaceVolume.get().doubleValue());
-        setVolume("electrolyzer", (float)MISoundAddonConfig.CONFIG.electrolyzerVolume.get().doubleValue());
-        setVolume("fission_reactor", (float)MISoundAddonConfig.CONFIG.fissionReactorVolume.get().doubleValue());
-        setVolume("fusion_reactor", (float)MISoundAddonConfig.CONFIG.fusionReactorVolume.get().doubleValue());
-        setVolume("furnace", (float)MISoundAddonConfig.CONFIG.furnaceVolume.get().doubleValue());
-        setVolume("heat_exchanger", (float)MISoundAddonConfig.CONFIG.heatExchangerVolume.get().doubleValue());
-        setVolume("implosion_compressor", (float)MISoundAddonConfig.CONFIG.implosionCompressorVolume.get().doubleValue());
-        setVolume("macerator", (float)MISoundAddonConfig.CONFIG.maceratorVolume.get().doubleValue());
-        setVolume("mixer", (float)MISoundAddonConfig.CONFIG.mixerVolume.get().doubleValue());
-        setVolume("oil_drilling_rig", (float)MISoundAddonConfig.CONFIG.oilDrillingRigVolume.get().doubleValue());
-        setVolume("packer", (float)MISoundAddonConfig.CONFIG.packerVolume.get().doubleValue());
-        setVolume("polarizer", (float)MISoundAddonConfig.CONFIG.polarizerVolume.get().doubleValue());
-        setVolume("pressurizer", (float)MISoundAddonConfig.CONFIG.pressurizerVolume.get().doubleValue());
-        setVolume("quarry", (float)MISoundAddonConfig.CONFIG.quarryVolume.get().doubleValue());
-        setVolume("unpacker", (float)MISoundAddonConfig.CONFIG.unpackerVolume.get().doubleValue());
-        setVolume("vacuum_freezer", (float)MISoundAddonConfig.CONFIG.vacuumFreezerVolume.get().doubleValue());
-        setVolume("wiremill", (float)MISoundAddonConfig.CONFIG.wiremillVolume.get().doubleValue());
-        setVolume("wrench", (float)MISoundAddonConfig.CONFIG.wrenchVolume.get().doubleValue());
-        setVolume("replicator", (float)MISoundAddonConfig.CONFIG.replicatorVolume.get().doubleValue());
+        setVolume(MI.id("assembler"), (float)MISoundAddonConfig.CONFIG.assemblerVolume.get().doubleValue());
+        setVolume(MI.id("blast_furnace"), (float)MISoundAddonConfig.CONFIG.blastFurnaceVolume.get().doubleValue());
+        setVolume(MI.id("centrifuge"), (float)MISoundAddonConfig.CONFIG.centrifugeVolume.get().doubleValue());
+        setVolume(MI.id("chemical_reactor"), (float)MISoundAddonConfig.CONFIG.chemicalReactorVolume.get().doubleValue());
+        setVolume(MI.id("coke_oven"), (float) MISoundAddonConfig.CONFIG.cokeOvenVolume.get().doubleValue());
+        setVolume(MI.id("compressor"), (float)MISoundAddonConfig.CONFIG.compressorVolume.get().doubleValue());
+        setVolume(MI.id("cutting_machine"), (float)MISoundAddonConfig.CONFIG.cuttingMachineVolume.get().doubleValue());
+        setVolume(MI.id("distillation_tower"), (float)MISoundAddonConfig.CONFIG.distillationTowerVolume.get().doubleValue());
+        setVolume(MI.id("distillery"), (float)MISoundAddonConfig.CONFIG.distilleryVolume.get().doubleValue());
+        setVolume(MI.id("electric_blast_furnace"), (float)MISoundAddonConfig.CONFIG.electricBlastFurnaceVolume.get().doubleValue());
+        setVolume(MI.id("electrolyzer"), (float)MISoundAddonConfig.CONFIG.electrolyzerVolume.get().doubleValue());
+        setVolume(MI.id("fission_reactor"), (float)MISoundAddonConfig.CONFIG.fissionReactorVolume.get().doubleValue());
+        setVolume(MI.id("fusion_reactor"), (float)MISoundAddonConfig.CONFIG.fusionReactorVolume.get().doubleValue());
+        setVolume(MI.id("furnace"), (float)MISoundAddonConfig.CONFIG.furnaceVolume.get().doubleValue());
+        setVolume(MI.id("heat_exchanger"), (float)MISoundAddonConfig.CONFIG.heatExchangerVolume.get().doubleValue());
+        setVolume(MI.id("implosion_compressor"), (float)MISoundAddonConfig.CONFIG.implosionCompressorVolume.get().doubleValue());
+        setVolume(MI.id("macerator"), (float)MISoundAddonConfig.CONFIG.maceratorVolume.get().doubleValue());
+        setVolume(MI.id("mixer"), (float)MISoundAddonConfig.CONFIG.mixerVolume.get().doubleValue());
+        setVolume(MI.id("oil_drilling_rig"), (float)MISoundAddonConfig.CONFIG.oilDrillingRigVolume.get().doubleValue());
+        setVolume(MI.id("packer"), (float)MISoundAddonConfig.CONFIG.packerVolume.get().doubleValue());
+        setVolume(MI.id("polarizer"), (float)MISoundAddonConfig.CONFIG.polarizerVolume.get().doubleValue());
+        setVolume(MI.id("pressurizer"), (float)MISoundAddonConfig.CONFIG.pressurizerVolume.get().doubleValue());
+        setVolume(MI.id("quarry"), (float)MISoundAddonConfig.CONFIG.quarryVolume.get().doubleValue());
+        setVolume(MI.id("unpacker"), (float)MISoundAddonConfig.CONFIG.unpackerVolume.get().doubleValue());
+        setVolume(MI.id("vacuum_freezer"), (float)MISoundAddonConfig.CONFIG.vacuumFreezerVolume.get().doubleValue());
+        setVolume(MI.id("wiremill"), (float)MISoundAddonConfig.CONFIG.wiremillVolume.get().doubleValue());
+        setVolume(MI.id("wrench"), (float)MISoundAddonConfig.CONFIG.wrenchVolume.get().doubleValue());
+        setVolume(MI.id("replicator"), (float)MISoundAddonConfig.CONFIG.replicatorVolume.get().doubleValue());
     }
 }
