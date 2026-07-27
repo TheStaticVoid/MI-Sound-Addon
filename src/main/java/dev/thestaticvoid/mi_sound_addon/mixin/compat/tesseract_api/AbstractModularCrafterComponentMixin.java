@@ -4,6 +4,7 @@ import aztech.modern_industrialization.machines.MachineComponent;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.condition.MachineProcessCondition;
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
@@ -17,7 +18,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Objects;
 
@@ -33,15 +33,15 @@ public abstract class AbstractModularCrafterComponentMixin<R> implements Machine
     @Shadow(remap = false)
     protected R activeRecipe;
 
-    @Inject(method = "tickRecipe", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
-    private void tickRecipeInject(CallbackInfoReturnable<Boolean> cir, boolean isActive) {
+    @Inject(method = "tickRecipe", at = @At("RETURN"), remap = false)
+    private void tickRecipeInject(CallbackInfoReturnable<Boolean> cir, @Local(name = "active") boolean active) {
         if (MISoundAddonConfig.CONFIG.machineSoundsEnabled.get()) {
             MachineBlockEntity blockEntity = this.conditionContext.getBlockEntity();
             SilencedComponent silencedState = ((SilencedComponentInterface) blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;
             long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
-            if (isActive && this.activeRecipe != null) {
+            if (active && this.activeRecipe != null) {
                 @SuppressWarnings("unchecked")
                 RecipeHolder<MachineRecipe> recipeHolder = (RecipeHolder<MachineRecipe>) this.activeRecipe;
 

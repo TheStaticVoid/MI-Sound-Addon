@@ -161,16 +161,13 @@ dependencies {
     implementation "me.shedaniel.cloth:cloth-config-neoforge:${project.cloth_config_version}"
     implementation "aztech:Modern-Industrialization:${project.mi_version}"
     implementation "org.appliedenergistics:guideme:${project.guideme_version}"
+    implementation "net.swedz:tesseract-api-neoforge:${project.tesseract_version}-${minecraft_version}"
+    implementation "net.swedz:extended-industrialization:${project.ei_version}-${minecraft_version}"
+    // preferably dont want to use the curse snippet here but there is not a proper maven setup for IO
+    implementation "curse.maven:industrialization-overdrive-1089065:7281011"
 
     compileOnly("dev.latvian.mods:kubejs-neoforge:${project.kubejs_version}")
-
-    implementation "net.swedz:tesseract-api-neoforge:${project.tesseract_version}-${minecraft_version}"
-
-
     runtimeOnly "dev.emi:emi-neoforge:${project.emi_version}+${minecraft_version}"
-    runtimeOnly "net.swedz:extended-industrialization:${project.ei_version}-${minecraft_version}"
-    // preferably dont want to use the curse snippet here but there is not a proper maven setup for IO
-    runtimeOnly "curse.maven:industrialization-overdrive-1089065:7281011"
 
     // Example mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

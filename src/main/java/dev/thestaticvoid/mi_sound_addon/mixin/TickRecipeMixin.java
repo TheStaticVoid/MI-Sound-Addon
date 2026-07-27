@@ -5,6 +5,7 @@ import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.components.CrafterComponent;
 import aztech.modern_industrialization.machines.recipe.MachineRecipe;
 import aztech.modern_industrialization.machines.recipe.condition.MachineProcessCondition;
+import com.llamalad7.mixinextras.sugar.Local;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
@@ -17,20 +18,19 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Objects;
 
 @Mixin(CrafterComponent.class)
 public abstract class TickRecipeMixin implements MachineComponent.ServerOnly {
     @Unique
-    public long lastSoundTime = 0;
+    public long mI_Sound_Addon$lastSoundTime = 0;
 
     @Shadow(remap = false) @Final private MachineProcessCondition.Context conditionContext;
     @Shadow(remap = false) private RecipeHolder<MachineRecipe> activeRecipe;
 
-    @Inject(method = "tickRecipe", at = @At("RETURN"), locals = LocalCapture.CAPTURE_FAILHARD, remap = false)
-    private void tickRecipeInjection(CallbackInfoReturnable<Boolean> cir, boolean isActive) {
+    @Inject(method = "tickRecipe", at = @At("RETURN"), remap = false)
+    private void tickRecipeInjection(CallbackInfoReturnable<Boolean> cir, @Local(name = "isActive") boolean isActive) {
         if (MISoundAddonConfig.CONFIG.machineSoundsEnabled.get()) {
             MachineBlockEntity blockEntity = this.conditionContext.getBlockEntity();
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
@@ -38,9 +38,9 @@ public abstract class TickRecipeMixin implements MachineComponent.ServerOnly {
             long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
             if (isActive && this.activeRecipe != null) {
-                if (currentGameTime > lastSoundTime + ModSounds.getDuration((MachineRecipe) this.activeRecipe.value())) {
-                    lastSoundTime = currentGameTime;
-                    ModSounds.playSound(blockEntity, (MachineRecipe) this.activeRecipe.value());
+                if (currentGameTime > mI_Sound_Addon$lastSoundTime + ModSounds.getDuration(this.activeRecipe.value())) {
+                    mI_Sound_Addon$lastSoundTime = currentGameTime;
+                    ModSounds.playSound(blockEntity, this.activeRecipe.value());
                 }
             }
         }

@@ -49,6 +49,9 @@ public final class MISoundAddonConfig {
     public final ModConfigSpec.ConfigValue<Double> alloySmelterVolume;
     public final ModConfigSpec.ConfigValue<Double> bendingMachineVolume;
     public final ModConfigSpec.ConfigValue<Double> canningMachineVolume;
+    public final ModConfigSpec.ConfigValue<Double> teslaCoilVolume;
+    public final ModConfigSpec.ConfigValue<Double> teslaTowerVolume;
+    public final ModConfigSpec.ConfigValue<Double> pyrolyseOvenVolume;
 
     private MISoundAddonConfig(ModConfigSpec.Builder builder) {
         machineSoundsEnabled = builder.define("machine_sounds_enabled", true);
@@ -152,5 +155,16 @@ public final class MISoundAddonConfig {
         canningMachineVolume = builder
                 .comment("Canning Machine Volume (EI)")
                 .defineInRange("canning_machine", 1.0, 0.0, 5.0);
+        teslaCoilVolume = builder
+                .comment("Tesla Coil Volume (EI)")
+                .defineInRange("tesla_coil", 1.0, 0.0, 5.0);
+        teslaTowerVolume = builder
+                .comment("Tesla Tower Volume (EI)")
+                .defineInRange("tesla_tower", 1.0, 0.0, 5.0);
+        pyrolyseOvenVolume = builder
+                .comment("Pyrolyse Oven Volume (IO)")
+                .defineInRange("pyrolyse_oven", 1.0, 0.0, 5.0);
+
+        builder.build();
     }
 }

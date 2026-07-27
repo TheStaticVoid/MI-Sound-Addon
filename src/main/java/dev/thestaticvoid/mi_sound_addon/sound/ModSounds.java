@@ -12,8 +12,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.swedz.extended_industrialization.EI;
+import net.swedz.extended_industrialization.EISounds;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -44,6 +47,12 @@ public class ModSounds {
         addSoundEvent(MI.id("wrench"));
         addSoundEvent(MI.id("config_card"));
         addSoundEvent(MI.id("replicator"));
+        if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
+            // The tesla.loop sound effect exists in EI already, so adding it to this mod's sound registry
+            // is slightly different from others.
+            SOUND_EVENTS.put(EI.id("tesla.loop"), new ModSoundEventInfo(EISounds.TESLA_COIL_LOOP, 46, 1.0F));
+            addSoundEvent(EI.id("tesla_tower"));
+        }
         updateDurations();
     }
 
@@ -59,7 +68,7 @@ public class ModSounds {
         ResourceLocation identifier = MISoundAddon.id(type.getNamespace() + "/" + type.getPath());
         Supplier<SoundEvent> soundEvent = SOUND_EVENTS_REGISTRY.register(identifier.getPath(), () -> SoundEvent.createVariableRangeEvent(identifier));
         SOUND_EVENTS.put(type, new ModSoundEventInfo(soundEvent, duration, volume));
-        MISoundAddon.LOGGER.debug("Sound registered: " + identifier);
+        MISoundAddon.LOGGER.debug("Sound registered: {}", identifier);
     }
 
     private static ResourceLocation getRecipeType(@NotNull MachineRecipe activeRecipe) {
@@ -115,7 +124,7 @@ public class ModSounds {
         }
     }
 
-    public static void playSoundNoRecipe(@NotNull MachineBlockEntity blockEntity, ResourceLocation type) {
+    public static void playSoundNoRecipe(@NotNull BlockEntity blockEntity, ResourceLocation type) {
         Level world = blockEntity.getLevel();
         if (world == null) { return; }
 
@@ -156,14 +165,18 @@ public class ModSounds {
         setDuration(MI.id("wiremill"), 45);
         setDuration(MI.id("replicator"), 20);
 
-        // TODO:
-        // mod ID is hardcoded for now, but preferably it would use it's ID builder
-        // Since EI is not required for this mod to work, can't guarantee it will exist
-        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), 97);
-        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), 38);
-        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), 30);
-        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), 69); // nice
-        setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "brewery"), 80);
+        if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
+            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), 97);
+            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), 38);
+            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), 30);
+            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), 69); // nice
+            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "brewery"), 80);
+            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla.loop"), 45);
+            setDuration(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla_tower"), 89);
+        }
+        if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {
+            setDuration(ResourceLocation.fromNamespaceAndPath("industrialization_overdrive", "pyrolyse_oven"), 80);
+        }
     }
 
     public static void updateVolumes() {
@@ -196,12 +209,17 @@ public class ModSounds {
         setVolume(MI.id("wrench"), (float)MISoundAddonConfig.CONFIG.wrenchVolume.get().doubleValue());
         setVolume(MI.id("config_card"), (float)MISoundAddonConfig.CONFIG.configCardVolume.get().doubleValue());
         setVolume(MI.id("replicator"), (float)MISoundAddonConfig.CONFIG.replicatorVolume.get().doubleValue());
-        // TODO
-        // Again, similar to the set duration segment, this namespace should not be hardcoded, but the mod isn't required
-        // so need to figure out how to check if it exists before attempting to reference it's ID builder.
-        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), (float)MISoundAddonConfig.CONFIG.composterVolume.get().doubleValue());
-        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), (float)MISoundAddonConfig.CONFIG.alloySmelterVolume.get().doubleValue());
-        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), (float)MISoundAddonConfig.CONFIG.bendingMachineVolume.get().doubleValue());
-        setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), (float)MISoundAddonConfig.CONFIG.canningMachineVolume.get().doubleValue());
+        if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
+            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "composter"), (float)MISoundAddonConfig.CONFIG.composterVolume.get().doubleValue());
+            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "alloy_smelter"), (float)MISoundAddonConfig.CONFIG.alloySmelterVolume.get().doubleValue());
+            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "bending_machine"), (float)MISoundAddonConfig.CONFIG.bendingMachineVolume.get().doubleValue());
+            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "canning_machine"), (float)MISoundAddonConfig.CONFIG.canningMachineVolume.get().doubleValue());
+            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla.loop"), (float)MISoundAddonConfig.CONFIG.teslaCoilVolume.get().doubleValue());
+            setVolume(ResourceLocation.fromNamespaceAndPath("extended_industrialization", "tesla_tower"), (float)MISoundAddonConfig.CONFIG.teslaTowerVolume.get().doubleValue());
+        }
+
+        if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {
+            setVolume(ResourceLocation.fromNamespaceAndPath("industrialization_overdrive", "pyrolyse_oven"), (float)MISoundAddonConfig.CONFIG.pyrolyseOvenVolume.get().doubleValue());
+        }
     }
 }

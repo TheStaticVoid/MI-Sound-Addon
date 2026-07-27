@@ -6,13 +6,15 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mi_sound_addon.refmap.json",
   "mixins": [
+    "ItemNetworkNodeMixin",
     "MachineBlockEntityMixin",
     "NuclearReactorMultiblockBlockEntityMixin",
     "PipeBlockMixin",
     "ReplicatorMachineBlockEntityMixin",
     "TickRecipeMixin",
-    "compat.tesseract_api.AbstractModularCrafterComponentMixin",
-    "ItemNetworkNodeMixin"
+    "compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin",
+    "compat.extended_industrialization.TeslaTowerBlockEntityMixin",
+    "compat.tesseract_api.AbstractModularCrafterComponentMixin"
   ],
   "client": [
   ],

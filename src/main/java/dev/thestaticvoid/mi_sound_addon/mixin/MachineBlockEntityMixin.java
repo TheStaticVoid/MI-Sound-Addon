@@ -10,14 +10,12 @@ import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.item.MalletItem;
-import dev.thestaticvoid.mi_sound_addon.sound.ModSoundEventInfo;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
 import dev.thestaticvoid.mi_sound_addon.util.SilencedComponentInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -44,12 +42,12 @@ public abstract class MachineBlockEntityMixin extends FastBlockEntity
     protected abstract void registerComponents(MachineComponent... components);
 
     @Unique
-    public SilencedComponent silencedComp;
+    public SilencedComponent mI_Sound_Addon$silencedComp;
 
     @Inject(at = @At("TAIL"), method = "<init>", remap = false)
     private void constructorMixin(BEP bep, MachineGuiParameters guiParams, OrientationComponent.Params orientationParams, CallbackInfo ci) {
-        silencedComp = new SilencedComponent();
-        registerComponents(silencedComp);
+        mI_Sound_Addon$silencedComp = new SilencedComponent();
+        registerComponents(mI_Sound_Addon$silencedComp);
     }
 
     @Inject(method = "useItemOn", at = @At("RETURN"), remap = false, cancellable = true)
@@ -57,7 +55,7 @@ public abstract class MachineBlockEntityMixin extends FastBlockEntity
         ItemInteractionResult result = MalletItem.onUse((MachineBlockEntity)(Object)this, player, hand);
         if (result.consumesAction()) {
             mISoundAddon$toggleSilencedState();
-            if (silencedComp.silenced) {
+            if (mI_Sound_Addon$silencedComp.silenced) {
                 player.displayClientMessage(Component.translatable(MalletItem.MACHINE_SILENCED), true);
             } else {
                 player.displayClientMessage(Component.translatable(MalletItem.MACHINE_UNSILENCED), true);
@@ -70,18 +68,17 @@ public abstract class MachineBlockEntityMixin extends FastBlockEntity
     private void useWrenchMixin(Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<Boolean> cir) {
         if (MISoundAddonConfig.CONFIG.wrenchSoundsEnabled.get()) {
             MachineBlockEntity blockEntity = ((MachineBlockEntity)(Object)this);
-            ModSoundEventInfo wrenchEvent = ModSounds.SOUND_EVENTS.get(MI.id("wrench"));
-            blockEntity.getLevel().playSound(player, blockEntity.getBlockPos(), wrenchEvent.getSoundEvent().get(), SoundSource.BLOCKS, wrenchEvent.getVolume(), 1.0F);
+            ModSounds.playSoundNoRecipe(blockEntity, MI.id("wrench"));
         }
     }
 
     @Override
     public void mISoundAddon$toggleSilencedState() {
-        silencedComp.onMalletUse();
+        mI_Sound_Addon$silencedComp.onMalletUse();
     }
 
     @Override
     public SilencedComponent mISoundAddon$getSilencedState() {
-        return silencedComp;
+        return mI_Sound_Addon$silencedComp;
     }
 }

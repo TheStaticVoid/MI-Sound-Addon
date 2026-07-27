@@ -12,7 +12,7 @@ This mod supports adding sounds to custom recipe types for MI machines added via
 ## Credits & License Notice
 The majority of the sounds for this mod are taken from the [GregTech CEu Modern project](https://github.com/GregTechCEu/GregTech-Modern). These sounds are licensed under the Creative Commons 0 license. The code for this project is licensed under the MIT license and can be viewed [here](./LICENSE).
 Additonal sounds were pulled from Freesound and attributed below:
-- **blast_furnace.ogg**: [Freesound](https://freesound.org/people/iankath/sounds/173991/) - CC0
+- **blast_furnace.ogg** && **pyrolyse_oven.ogg**: [Freesound](https://freesound.org/people/iankath/sounds/173991/) - CC0
 - **distillation_tower.ogg**: [Freesound](https://freesound.org/people/krypaw/sounds/584898/) - CC0
 - **oil_drilling_rig.ogg**: [Freesound](https://freesound.org/people/gecop/sounds/568860/) - CC0
 - **packer.ogg** and **unpacker.ogg**: [Freesound](https://freesound.org/people/AGMoneyTrigga/sounds/231347/) - CC0
@@ -23,6 +23,7 @@ Additonal sounds were pulled from Freesound and attributed below:
 - **composter.ogg**: [Freesound](https://freesound.org/people/giddster/sounds/434992/) - CC0
 - **config_card.ogg**: [Freesound](https://freesound.org/people/nezuai/sounds/582609/) - CC BY 4.0
 - **canning_machine.ogg**: [Freesound](https://freesound.org/people/Benboncan/sounds/65372/) - CC BY 4.0
+- **tesla_tower.ogg**: [Freesound](https://freesound.org/people/craigsmith/sounds/675760/) -- CC0
 
 The Fusion Reactor sound is pulled from [Mekanism](https://github.com/mekanism/mekanism) - MIT
 

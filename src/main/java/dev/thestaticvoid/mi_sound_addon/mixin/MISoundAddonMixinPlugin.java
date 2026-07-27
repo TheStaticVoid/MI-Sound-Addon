@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
+import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.LoadingModList;
 import org.objectweb.asm.tree.ClassNode;
@@ -23,7 +24,15 @@ public class MISoundAddonMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (mixinClassName.equals("dev.thestaticvoid.mi_sound_addon.mixin.compat.tesseract_api.AbstractModularCrafterComponentMixin")) {
-            return isLoaded("tesseract_api");
+            return MISoundAddon.checkModIsLoaded("tesseract_api");
+        }
+
+        if (mixinClassName.equals("dev.thestaticvoid.mi_sound_addon.mixin.compat.extended_industrialization.TeslaTowerBlockEntityMixin")) {
+            return MISoundAddon.checkModIsLoaded("extended_industrialization");
+        }
+
+        if (mixinClassName.equals("dev.thestaticvoid.mi_sound_addon.mixin.compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin")) {
+            return MISoundAddon.checkModIsLoaded("extended_industrialization");
         }
         return true;
     }
@@ -46,11 +55,5 @@ public class MISoundAddonMixinPlugin implements IMixinConfigPlugin {
     @Override
     public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
 
-    }
-
-    private boolean isLoaded(String modId) {
-        return modId != null && !modId.isEmpty() && ModList.get() != null ?
-                ModList.get().isLoaded(modId) :
-                LoadingModList.get().getModFileById(modId) != null;
     }
 }

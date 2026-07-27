@@ -26,20 +26,20 @@ public abstract class ReplicatorMachineBlockEntityMixin extends MachineBlockEnti
     }
 
     @Unique
-    public long lastSoundTime = 0;
+    public long mI_Sound_Addon$lastSoundTime = 0;
 
     @Inject(method = "tick()V", at = @At(value = "INVOKE",
             target = "Laztech/modern_industrialization/machines/components/IsActiveComponent;updateActive(ZLaztech/modern_industrialization/machines/MachineBlockEntity;)V",
             ordinal = 1, shift = At.Shift.BEFORE), remap = false)
     private void tickMixin(CallbackInfo ci) {
         if (MISoundAddonConfig.CONFIG.machineSoundsEnabled.get()) {
-            MachineBlockEntity blockEntity = ((ReplicatorMachineBlockEntity)(Object)this);
+            MachineBlockEntity blockEntity = this;
             SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;
             long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
-            if (currentGameTime > lastSoundTime + ModSounds.getDurationFromString(MI.id("replicator"))) {
-                lastSoundTime = currentGameTime;
+            if (currentGameTime > mI_Sound_Addon$lastSoundTime + ModSounds.getDurationFromString(MI.id("replicator"))) {
+                mI_Sound_Addon$lastSoundTime = currentGameTime;
                 ModSounds.playSoundNoRecipe(blockEntity, MI.id("replicator"));
             }
         }

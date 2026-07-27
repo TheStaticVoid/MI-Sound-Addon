@@ -12,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +27,7 @@ public class MalletItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
+    public void appendHoverText(@NonNull ItemStack stack, @NonNull TooltipContext context, List<Component> tooltipComponents, @NonNull TooltipFlag isAdvanced) {
         tooltipComponents.add(Component.translatable(TOOLTIP_TEXT).withStyle(ChatFormatting.AQUA));
         super.appendHoverText(stack, context, tooltipComponents, isAdvanced);
     }

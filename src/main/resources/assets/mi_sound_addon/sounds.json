@@ -202,5 +202,17 @@
     "sounds": [
       "mi_sound_addon:extended_industrialization/brewery"
     ]
+  },
+  "extended_industrialization/tesla_tower": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:extended_industrialization/tesla_tower"
+    ]
+  },
+  "industrialization_overdrive/pyrolyse_oven": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:industrialization_overdrive/pyrolyse_oven"
+    ]
   }
 }

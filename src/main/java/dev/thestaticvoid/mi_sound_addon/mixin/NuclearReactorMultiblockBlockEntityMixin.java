@@ -30,7 +30,7 @@ public abstract class NuclearReactorMultiblockBlockEntityMixin extends Multibloc
     }
 
     @Unique
-    public long lastSoundTime = 0;
+    public long mI_Sound_Addon$lastSoundTime = 0;
 
     @Shadow(remap = false) @Final private IsActiveComponent isActive;
 
@@ -44,8 +44,8 @@ public abstract class NuclearReactorMultiblockBlockEntityMixin extends Multibloc
             if (silencedState.silenced) return;
             long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
-            if (currentGameTime > lastSoundTime + ModSounds.getDurationFromString(MI.id("fission_reactor"))) {
-                lastSoundTime = currentGameTime;
+            if (currentGameTime > mI_Sound_Addon$lastSoundTime + ModSounds.getDurationFromString(MI.id("fission_reactor"))) {
+                mI_Sound_Addon$lastSoundTime = currentGameTime;
                 ModSounds.playSoundNoRecipe(blockEntity, MI.id("fission_reactor"));
             }
         }

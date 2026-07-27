@@ -5,7 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import java.util.function.Supplier;
 
 public class ModSoundEventInfo {
-    private Supplier<SoundEvent> soundEvent;
+    private final Supplier<SoundEvent> soundEvent;
     private int soundDuration;
     private float volume;
 
