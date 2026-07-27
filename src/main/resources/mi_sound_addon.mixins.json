@@ -12,6 +12,7 @@
     "PipeBlockMixin",
     "ReplicatorMachineBlockEntityMixin",
     "TickRecipeMixin",
+    "UpgradeComponentMixin",
     "compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin",
     "compat.extended_industrialization.TeslaTowerBlockEntityMixin",
     "compat.tesseract_api.AbstractModularCrafterComponentMixin"
