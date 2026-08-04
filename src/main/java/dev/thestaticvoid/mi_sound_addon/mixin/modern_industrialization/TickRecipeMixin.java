@@ -1,4 +1,4 @@
-package dev.thestaticvoid.mi_sound_addon.mixin;
+package dev.thestaticvoid.mi_sound_addon.mixin.modern_industrialization;
 
 import aztech.modern_industrialization.machines.MachineComponent;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
