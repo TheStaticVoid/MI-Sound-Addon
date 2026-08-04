@@ -22,7 +22,7 @@ public class PipeBlockMixin {
         // This should be fine as the method will return true if it reaches the point it would play sounds anyway
         // However if MI updates and adds extra stuff beyond the last if statement, this could break
         if (MISoundAddonConfig.CONFIG.wrenchSoundsEnabled.get()) {
-            ModSounds.playSoundNoRecipe(pipe, MI.id("wrench"));
+            ModSounds.playSoundForPlayer(pipe, MI.id("wrench"), player);
             cir.setReturnValue(true);
         }
     }
