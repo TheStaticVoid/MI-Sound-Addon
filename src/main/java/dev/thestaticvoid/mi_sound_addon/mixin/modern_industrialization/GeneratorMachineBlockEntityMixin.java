@@ -48,15 +48,23 @@ public class GeneratorMachineBlockEntityMixin {
             SilencedComponent silencedState = ((SilencedComponentInterface) blockEntity).mISoundAddon$getSilencedState();
             if (silencedState.silenced) return;
 
+            ModSoundEventInfo soundEventInfo = null;
+            long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
+
             // probably not the best way to get the blockId, but it's quick
             ResourceLocation machineId = blockEntity.guiParams.blockId;
-            if (mI_Sound_Addon$defaultGenerators.containsKey(machineId.getPath())) {
-                ModSoundEventInfo soundEvent = ModSounds.SOUND_EVENTS.get(MI.id(mI_Sound_Addon$defaultGenerators.get(machineId.getPath())));
-                long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
 
-                if (currentGameTime > mI_Sound_Addon$lastSoundTime + soundEvent.getSoundDuration()) {
+            if (mI_Sound_Addon$defaultGenerators.containsKey(machineId.getPath())) {
+                soundEventInfo = ModSounds.SOUND_EVENTS.get(MI.id(mI_Sound_Addon$defaultGenerators.get(machineId.getPath())));
+
+            } else if (ModSounds.SOUND_EVENTS.containsKey(machineId)) {
+                soundEventInfo = ModSounds.SOUND_EVENTS.get(machineId);
+            }
+
+            if (soundEventInfo != null) {
+                if (currentGameTime > mI_Sound_Addon$lastSoundTime + soundEventInfo.getSoundDuration()) {
                     mI_Sound_Addon$lastSoundTime = currentGameTime;
-                    ModSounds.playSoundNoRecipe(blockEntity, MI.id(mI_Sound_Addon$defaultGenerators.get(machineId.getPath())));
+                    ModSounds.playSoundEvent(blockEntity, soundEventInfo);
                 }
             }
         }

@@ -17,4 +17,8 @@ public class ModifySoundEventsJS implements KubeEvent {
     public void modifyVolume(String recipeType, float volume) {
         ModSounds.setVolume(toResourceLocation(recipeType), volume);
     }
+
+    public void registerGeneratorSound(String generatorId, int duration, float volume) {
+        ModSounds.addSoundEvent(toResourceLocation(generatorId), volume, duration);
+    }
 }

@@ -130,13 +130,16 @@ public class ModSounds {
     }
 
     public static void playSoundNoRecipe(@NotNull BlockEntity blockEntity, ResourceLocation type) {
+        ModSoundEventInfo soundEventInfo = SOUND_EVENTS.get(type);
+        playSoundEvent(blockEntity, soundEventInfo);
+    }
+
+    public static void playSoundEvent(@NotNull BlockEntity blockEntity, ModSoundEventInfo soundEventInfo) {
         Level world = blockEntity.getLevel();
         if (world == null) { return; }
 
-        ModSoundEventInfo soundEventInfo = SOUND_EVENTS.get(type);
         if (soundEventInfo.getSoundEvent() != null) {
-            world.playSound(null, blockEntity.getBlockPos().getX(), blockEntity.getBlockPos().getY(),
-                    blockEntity.getBlockPos().getZ(), soundEventInfo.getSoundEvent().get(), SoundSource.BLOCKS,
+            world.playSound(null, blockEntity.getBlockPos(), soundEventInfo.getSoundEvent().get(), SoundSource.BLOCKS,
                     soundEventInfo.getVolume(), 1.0F);
         }
     }
