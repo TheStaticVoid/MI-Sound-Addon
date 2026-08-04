@@ -49,3 +49,10 @@ type = "optional"
 versionRange = "${io_version_range}"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "yet_another_industrialization"
+type = "optional"
+versionRange = "${yai_version_range}"
+ordering = "AFTER"
+side = "BOTH"

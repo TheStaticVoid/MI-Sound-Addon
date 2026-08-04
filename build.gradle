@@ -71,6 +71,12 @@ repositories {
         url = "https://repo.sleeping.town"
     }
 
+    // Add KFF Maven repository
+    maven {
+        name = 'Kotlin for Forge'
+        url = 'https://thedarkcolour.github.io/KotlinForForge/'
+    }
+
     mavenLocal()
 }
 
@@ -163,8 +169,9 @@ dependencies {
     implementation "org.appliedenergistics:guideme:${project.guideme_version}"
     implementation "net.swedz:tesseract-api-neoforge:${project.tesseract_version}-${minecraft_version}"
     implementation "net.swedz:extended-industrialization:${project.ei_version}-${minecraft_version}"
-    // preferably dont want to use the curse snippet here but there is not a proper maven setup for IO
-    implementation "curse.maven:industrialization-overdrive-1089065:7281011"
+    implementation "curse.maven:industrialization-overdrive-${project.io_version}"
+    implementation "thedarkcolour:kotlinforforge-neoforge:${project.kff_version}"
+    implementation "curse.maven:yet-another-industrialization-${project.yai_version}"
 
     compileOnly("dev.latvian.mods:kubejs-neoforge:${project.kubejs_version}")
     runtimeOnly "dev.emi:emi-neoforge:${project.emi_version}+${minecraft_version}"
@@ -214,6 +221,7 @@ tasks.withType(ProcessResources).configureEach {
             mod_github_link        : mod_github_link,
             ei_version_range       : ei_version_range,
             io_version_range       : io_version_range,
+            yai_version_range      : yai_version_range
     ]
     inputs.properties replaceProperties
 
