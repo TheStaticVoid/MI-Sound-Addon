@@ -3,7 +3,6 @@ package dev.thestaticvoid.mi_sound_addon.mixin.compat.extended_industrialization
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
 import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSoundEventInfo;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
@@ -43,7 +42,6 @@ public abstract class TeslaTowerBlockEntityMixin {
                 // ModSounds.playSoundNoRecipe(blockEntity, EI.id("tesla_tower"));
 
                 BlockPos newPos = mI_Sound_Addon$calculateTowerBlockPos(blockEntity.getBlockPos(), blockEntity.orientation);
-                MISoundAddon.LOGGER.debug(String.valueOf(newPos));
                 blockEntity.getLevel().playSound(null, newPos, teslaSoundEvent.getSoundEvent().get(),
                         SoundSource.BLOCKS, teslaSoundEvent.getVolume(), 1.0F);
             }

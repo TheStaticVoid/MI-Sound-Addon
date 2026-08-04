@@ -6,18 +6,19 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "mi_sound_addon.refmap.json",
   "mixins": [
+    "compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin",
+    "compat.extended_industrialization.TeslaTowerBlockEntityMixin",
+    "compat.extended_industrialization.TeslaTowerUpgradeComponentMixin",
+    "compat.tesseract_api.AbstractModularCrafterComponentMixin",
     "modern_industrialization.BoilerMachineBlockEntityMixin",
     "modern_industrialization.ItemNetworkNodeMixin",
     "modern_industrialization.MachineBlockEntityMixin",
     "modern_industrialization.NuclearReactorMultiblockBlockEntityMixin",
     "modern_industrialization.PipeBlockMixin",
     "modern_industrialization.ReplicatorMachineBlockEntityMixin",
+    "modern_industrialization.SteamBoilerMultiblockBlockEntityMixin",
     "modern_industrialization.TickRecipeMixin",
-    "modern_industrialization.UpgradeComponentMixin",
-    "compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin",
-    "compat.extended_industrialization.TeslaTowerBlockEntityMixin",
-    "compat.extended_industrialization.TeslaTowerUpgradeComponentMixin",
-    "compat.tesseract_api.AbstractModularCrafterComponentMixin"
+    "modern_industrialization.UpgradeComponentMixin"
   ],
   "client": [
   ],

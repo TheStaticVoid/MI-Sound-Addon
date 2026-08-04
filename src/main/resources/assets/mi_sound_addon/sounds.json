@@ -167,6 +167,12 @@
       "mi_sound_addon:modern_industrialization/config_card"
     ]
   },
+  "modern_industrialization/boiler": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:modern_industrialization/boiler"
+    ]
+  },
   "modern_industrialization/replicator": {
     "category": "block",
     "sounds": [

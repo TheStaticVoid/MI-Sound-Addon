@@ -17,6 +17,7 @@ public final class MISoundAddonConfig {
     public final ModConfigSpec.ConfigValue<Boolean> machineSoundsEnabled;
     public final ModConfigSpec.ConfigValue<Boolean> wrenchSoundsEnabled;
     public final ModConfigSpec.ConfigValue<Boolean> configCardSoundsEnabled;
+    public final ModConfigSpec.ConfigValue<Boolean> generatorSoundsEnabled;
     public final ModConfigSpec.ConfigValue<Double> assemblerVolume;
     public final ModConfigSpec.ConfigValue<Double> blastFurnaceVolume;
     public final ModConfigSpec.ConfigValue<Double> centrifugeVolume;
@@ -53,11 +54,13 @@ public final class MISoundAddonConfig {
     public final ModConfigSpec.ConfigValue<Double> teslaCoilVolume;
     public final ModConfigSpec.ConfigValue<Double> teslaTowerVolume;
     public final ModConfigSpec.ConfigValue<Double> pyrolyseOvenVolume;
+    public final ModConfigSpec.ConfigValue<Double> boilerVolume;
 
     private MISoundAddonConfig(ModConfigSpec.Builder builder) {
         machineSoundsEnabled = builder.define("machine_sounds_enabled", true);
         wrenchSoundsEnabled = builder.define("wrench_sounds_enabled", true);
         configCardSoundsEnabled = builder.define("config_card_sounds_enabled", true);
+        generatorSoundsEnabled = builder.define("generator_sounds_enabled", true);
         assemblerVolume = builder
                 .comment("Assembler Volume")
                 .defineInRange("assembler_volume", 1.0, 0.0, 5.0);
@@ -145,6 +148,9 @@ public final class MISoundAddonConfig {
         replicatorVolume = builder
                 .comment("Replicator Volume")
                 .defineInRange("replicator_volume", 1.0, 0.0, 5.0);
+        boilerVolume = builder
+                .comment("Boiler Volume")
+                .defineInRange("boiler_volume", 1.0, 0.0, 5.0);
         composterVolume = builder
                 .comment("Composter Volume (EI)")
                 .defineInRange("composter_volume", 1.0, 0.0, 5.0);

@@ -48,6 +48,7 @@ public class ModSounds {
         addSoundEvent(MI.id("wrench"));
         addSoundEvent(MI.id("config_card"));
         addSoundEvent(MI.id("replicator"));
+        addSoundEvent(MI.id("boiler"));
         if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
             // The tesla.loop sound effect exists in EI already, so adding it to this mod's sound registry
             // is slightly different from others.
@@ -165,6 +166,7 @@ public class ModSounds {
         setDuration(MI.id("vacuum_freezer"), 62);
         setDuration(MI.id("wiremill"), 45);
         setDuration(MI.id("replicator"), 20);
+        setDuration(MI.id("boiler"), 66);
 
         if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
             setDuration(EI.id("composter"), 97);
@@ -210,6 +212,7 @@ public class ModSounds {
         setVolume(MI.id("wrench"), (float)MISoundAddonConfig.CONFIG.wrenchVolume.get().doubleValue());
         setVolume(MI.id("config_card"), (float)MISoundAddonConfig.CONFIG.configCardVolume.get().doubleValue());
         setVolume(MI.id("replicator"), (float)MISoundAddonConfig.CONFIG.replicatorVolume.get().doubleValue());
+        setVolume(MI.id("boiler"), (float)MISoundAddonConfig.CONFIG.boilerVolume.get().doubleValue());
         if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
             setVolume(EI.id("composter"), (float)MISoundAddonConfig.CONFIG.composterVolume.get().doubleValue());
             setVolume(EI.id("alloy_smelter"), (float)MISoundAddonConfig.CONFIG.alloySmelterVolume.get().doubleValue());
