@@ -54,6 +54,7 @@ public class ModSounds {
             // is slightly different from others.
             SOUND_EVENTS.put(EI.id("tesla.loop"), new ModSoundEventInfo(EISounds.TESLA_COIL_LOOP, 46, 1.0F));
             addSoundEvent(EI.id("tesla_tower"));
+            addSoundEvent(EI.id("solar_boiler"));
         }
         updateDurations();
     }
@@ -176,6 +177,7 @@ public class ModSounds {
             setDuration(EI.id("brewery"), 80);
             setDuration(EI.id("tesla.loop"), 45);
             setDuration(EI.id("tesla_tower"), 89);
+            setDuration(EI.id("solar_boiler"), 105);
         }
         if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {
             setDuration(IO.id("pyrolyse_oven"), 80);
@@ -220,6 +222,7 @@ public class ModSounds {
             setVolume(EI.id("canning_machine"), (float)MISoundAddonConfig.CONFIG.canningMachineVolume.get().doubleValue());
             setVolume(EI.id("tesla.loop"), (float)MISoundAddonConfig.CONFIG.teslaCoilVolume.get().doubleValue());
             setVolume(EI.id("tesla_tower"), (float)MISoundAddonConfig.CONFIG.teslaTowerVolume.get().doubleValue());
+            setVolume(EI.id("solar_boiler"), (float)MISoundAddonConfig.CONFIG.solarBoilerVolume.get().doubleValue());
         }
 
         if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {

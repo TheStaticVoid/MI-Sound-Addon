@@ -55,6 +55,7 @@ public final class MISoundAddonConfig {
     public final ModConfigSpec.ConfigValue<Double> teslaTowerVolume;
     public final ModConfigSpec.ConfigValue<Double> pyrolyseOvenVolume;
     public final ModConfigSpec.ConfigValue<Double> boilerVolume;
+    public final ModConfigSpec.ConfigValue<Double> solarBoilerVolume;
 
     private MISoundAddonConfig(ModConfigSpec.Builder builder) {
         machineSoundsEnabled = builder.define("machine_sounds_enabled", true);
@@ -169,6 +170,9 @@ public final class MISoundAddonConfig {
         teslaTowerVolume = builder
                 .comment("Tesla Tower Volume (EI)")
                 .defineInRange("tesla_tower", 1.0, 0.0, 5.0);
+        solarBoilerVolume = builder
+                .comment("Solar Boiler Volume (EI)")
+                .defineInRange("solar_boiler", 1.0, 0.0, 5.0);
         pyrolyseOvenVolume = builder
                 .comment("Pyrolyse Oven Volume (IO)")
                 .defineInRange("pyrolyse_oven", 1.0, 0.0, 5.0);

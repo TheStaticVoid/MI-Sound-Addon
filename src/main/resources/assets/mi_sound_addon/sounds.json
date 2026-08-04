@@ -215,6 +215,12 @@
       "mi_sound_addon:extended_industrialization/tesla_tower"
     ]
   },
+  "extended_industrialization/solar_boiler": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:extended_industrialization/solar_boiler"
+    ]
+  },
   "industrialization_overdrive/pyrolyse_oven": {
     "category": "block",
     "sounds": [

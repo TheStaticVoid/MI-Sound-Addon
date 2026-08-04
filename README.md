@@ -25,6 +25,7 @@ Additonal sounds were pulled from Freesound and attributed below:
 - **canning_machine.ogg**: [Freesound](https://freesound.org/people/Benboncan/sounds/65372/) - CC BY 4.0
 - **tesla_tower.ogg**: [Freesound](https://freesound.org/people/craigsmith/sounds/675760/) - CC0
 - **boiler.ogg**: [Freesound](https://freesound.org/people/Ezcah/sounds/248296/) - CC0
+- **solar_boiler.ogg**: [Freesound](https://freesound.org/people/buzzmsc/sounds/428867/) - CC BY 4.0
 
 The Fusion Reactor sound is pulled from [Mekanism](https://github.com/mekanism/mekanism) - MIT
 
