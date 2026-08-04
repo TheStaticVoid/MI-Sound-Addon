@@ -12,6 +12,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.IEventBus;
@@ -140,6 +141,17 @@ public class ModSounds {
 
         if (soundEventInfo.getSoundEvent() != null) {
             world.playSound(null, blockEntity.getBlockPos(), soundEventInfo.getSoundEvent().get(), SoundSource.BLOCKS,
+                    soundEventInfo.getVolume(), 1.0F);
+        }
+    }
+
+    public static void playSoundForPlayer(@NotNull BlockEntity blockEntity, ResourceLocation type, Player player) {
+        ModSoundEventInfo soundEventInfo = SOUND_EVENTS.get(type);
+        Level world = blockEntity.getLevel();
+        if (world == null) { return; }
+
+        if (soundEventInfo.getSoundEvent() != null) {
+            world.playSound(player, blockEntity.getBlockPos(), soundEventInfo.getSoundEvent().get(), SoundSource.BLOCKS,
                     soundEventInfo.getVolume(), 1.0F);
         }
     }
