@@ -12,6 +12,8 @@
     "compat.extended_industrialization.TeslaTowerUpgradeComponentMixin",
     "compat.tesseract_api.AbstractModularCrafterComponentMixin",
     "modern_industrialization.BoilerMachineBlockEntityMixin",
+    "modern_industrialization.GeneratorMachineBlockEntityMixin",
+    "modern_industrialization.GeneratorMultiblockBlockEntityMixin",
     "modern_industrialization.ItemNetworkNodeMixin",
     "modern_industrialization.MachineBlockEntityMixin",
     "modern_industrialization.NuclearReactorMultiblockBlockEntityMixin",

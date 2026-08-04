@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon;
 
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -56,6 +57,8 @@ public final class MISoundAddonConfig {
     public final ModConfigSpec.ConfigValue<Double> pyrolyseOvenVolume;
     public final ModConfigSpec.ConfigValue<Double> boilerVolume;
     public final ModConfigSpec.ConfigValue<Double> solarBoilerVolume;
+    public final ModConfigSpec.ConfigValue<Double> turbineVolume;
+    public final ModConfigSpec.ConfigValue<Double> dieselVolume;
 
     private MISoundAddonConfig(ModConfigSpec.Builder builder) {
         machineSoundsEnabled = builder.define("machine_sounds_enabled", true);
@@ -152,6 +155,12 @@ public final class MISoundAddonConfig {
         boilerVolume = builder
                 .comment("Boiler Volume")
                 .defineInRange("boiler_volume", 1.0, 0.0, 5.0);
+        turbineVolume = builder
+                .comment("Turbine Volume")
+                .defineInRange("turbine_volume", 1.0, 0.0, 5.0);
+        dieselVolume = builder
+                .comment("Diesel Generator Volume")
+                .defineInRange("diesel_volume", 1.0, 0.0, 5.0);
         composterVolume = builder
                 .comment("Composter Volume (EI)")
                 .defineInRange("composter_volume", 1.0, 0.0, 5.0);

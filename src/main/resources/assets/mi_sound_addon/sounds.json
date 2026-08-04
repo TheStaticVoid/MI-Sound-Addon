@@ -173,6 +173,18 @@
       "mi_sound_addon:modern_industrialization/boiler"
     ]
   },
+  "modern_industrialization/turbine": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:modern_industrialization/turbine"
+    ]
+  },
+  "modern_industrialization/diesel": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:modern_industrialization/diesel"
+    ]
+  },
   "modern_industrialization/replicator": {
     "category": "block",
     "sounds": [
