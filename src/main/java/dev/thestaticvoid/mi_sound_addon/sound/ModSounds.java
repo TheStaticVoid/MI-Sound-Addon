@@ -41,6 +41,8 @@ public class ModSounds {
         for (MachineRecipeType mrt : machineRecipeTypes) {
             ResourceLocation type = mrt.getId();
             if (type.equals(MI.id("forge_hammer"))) continue;
+            // already makes a sound
+            if (type.equals(YAIResource("pulse_detonation_generator"))) continue;
             addSoundEvent(type);
         }
 
@@ -187,7 +189,6 @@ public class ModSounds {
         setDuration(MI.id("boiler"), 66);
         setDuration(MI.id("turbine"), 36);
         setDuration(MI.id("diesel"), 9);
-
         if (MISoundAddon.checkModIsLoaded("extended_industrialization")) {
             setDuration(EI.id("composter"), 97);
             setDuration(EI.id("alloy_smelter"), 38);
@@ -200,6 +201,11 @@ public class ModSounds {
         }
         if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {
             setDuration(IO.id("pyrolyse_oven"), 80);
+        }
+        if (MISoundAddon.checkModIsLoaded(YAI)) {
+            setDuration(YAIResource("arboreous_greenhouse"), 140);
+            setDuration(YAIResource("cryogenic_precipitator"), 71);
+            setDuration(YAIResource("dragon_egg_energy_siphon"), 60);
         }
     }
 
@@ -245,9 +251,19 @@ public class ModSounds {
             setVolume(EI.id("tesla_tower"), (float)MISoundAddonConfig.CONFIG.teslaTowerVolume.get().doubleValue());
             setVolume(EI.id("solar_boiler"), (float)MISoundAddonConfig.CONFIG.solarBoilerVolume.get().doubleValue());
         }
-
         if (MISoundAddon.checkModIsLoaded("industrialization_overdrive")) {
             setVolume(IO.id("pyrolyse_oven"), (float)MISoundAddonConfig.CONFIG.pyrolyseOvenVolume.get().doubleValue());
         }
+        if (MISoundAddon.checkModIsLoaded(YAI)) {
+            setVolume(YAIResource("arboreous_greenhouse"), (float)MISoundAddonConfig.CONFIG.arboreousGreenhouseVolume.get().doubleValue());
+            setVolume(YAIResource("cryogenic_precipitator"), (float)MISoundAddonConfig.CONFIG.cryogenicPrecipitatorVolume.get().doubleValue());
+            setVolume(YAIResource("dragon_egg_energy_siphon"), (float)MISoundAddonConfig.CONFIG.dragonEggEnergySiphonVolume.get().doubleValue());
+        }
+    }
+
+    // Idk the Kotlin nature of the YAI mod has me confused and I don't want to write that long mod ID each time
+    private static final String YAI = "yet_another_industrialization";
+    private static ResourceLocation YAIResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(YAI, path);
     }
 }

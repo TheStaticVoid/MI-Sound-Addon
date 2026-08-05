@@ -59,6 +59,9 @@ public final class MISoundAddonConfig {
     public final ModConfigSpec.ConfigValue<Double> solarBoilerVolume;
     public final ModConfigSpec.ConfigValue<Double> turbineVolume;
     public final ModConfigSpec.ConfigValue<Double> dieselVolume;
+    public final ModConfigSpec.ConfigValue<Double> arboreousGreenhouseVolume;
+    public final ModConfigSpec.ConfigValue<Double> cryogenicPrecipitatorVolume;
+    public final ModConfigSpec.ConfigValue<Double> dragonEggEnergySiphonVolume;
 
     private MISoundAddonConfig(ModConfigSpec.Builder builder) {
         machineSoundsEnabled = builder.define("machine_sounds_enabled", true);
@@ -185,6 +188,15 @@ public final class MISoundAddonConfig {
         pyrolyseOvenVolume = builder
                 .comment("Pyrolyse Oven Volume (IO)")
                 .defineInRange("pyrolyse_oven", 1.0, 0.0, 5.0);
+        arboreousGreenhouseVolume = builder
+                .comment("Arboreous Greenhouse Volume (YAI)")
+                .defineInRange("arboreous_greenhouse", 1.0, 0.0, 5.0);
+        cryogenicPrecipitatorVolume = builder
+                .comment("Cryogenic Precipitator Volume (YAI)")
+                .defineInRange("cryogenic_precipitator", 1.0, 0.0, 5.0);
+        dragonEggEnergySiphonVolume = builder
+                .comment("Dragon Egg Energy Siphon Volume (YAI)")
+                .defineInRange("dragon_egg_energy_siphon", 1.0, 0.0, 5.0);
 
         builder.build();
     }

@@ -238,5 +238,23 @@
     "sounds": [
       "mi_sound_addon:industrialization_overdrive/pyrolyse_oven"
     ]
+  },
+  "yet_another_industrialization/cryogenic_precipitator": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:yet_another_industrialization/cryogenic_precipitator"
+    ]
+  },
+  "yet_another_industrialization/arboreous_greenhouse": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:yet_another_industrialization/arboreous_greenhouse"
+    ]
+  },
+  "yet_another_industrialization/dragon_egg_energy_siphon": {
+    "category": "block",
+    "sounds": [
+      "mi_sound_addon:modern_industrialization/fission_reactor"
+    ]
   }
 }
