@@ -28,9 +28,7 @@ public class EntityPlaceEventHandler {
             if (offhand.has(EIComponents.MACHINE_CONFIG)) {
                 BlockEntity blockEntity = event.getLevel().getBlockEntity(event.getPos());
                 if (blockEntity instanceof MachineBlockEntity) {
-                    if (MISoundAddonConfig.CONFIG.configCardSoundsEnabled.get()) {
-                        ModSounds.playSoundNoRecipe(blockEntity, MI.id("config_card"));
-                    }
+                    ModSounds.playSoundNoRecipe(blockEntity, MI.id("config_card"));
                 }
             }
         }
