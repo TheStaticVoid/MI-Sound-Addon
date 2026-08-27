@@ -48,6 +48,15 @@ public class MISASound {
         return SOUND_EVENTS.getOrDefault(location, null);
     }
 
+    public static void setVolume(ResourceLocation location, float volume) {
+        if (SOUND_EVENTS.containsKey(location)) {
+            SOUND_EVENTS.remove(location);
+            addSoundEvent(location, volume);
+        } else {
+            throw new IllegalStateException("Tried to set volume of non-existent recipe type: %s".formatted(location));
+        }
+    }
+
     private static ResourceLocation createFormattedResourceLocation(ResourceLocation id) {
         // This formats the output to be in the following format:
         // mi_sound_addon:mod_namespace/mod_path
