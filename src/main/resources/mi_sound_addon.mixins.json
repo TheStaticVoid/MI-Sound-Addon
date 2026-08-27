@@ -2,8 +2,11 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.thestaticvoid.mi_sound_addon.mixin",
+  "plugin":"dev.thestaticvoid.mi_sound_addon.mixin.MISAMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "modern_industrialization.AbstractCraftingMachineBlockEntityMixin",
+    "modern_industrialization.MachineBlockEntityMixin"
   ],
   "client": [
   ],

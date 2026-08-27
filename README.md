@@ -29,7 +29,7 @@ Additonal sounds were pulled from Freesound and attributed below:
 
 The Fusion Reactor sound is pulled from [Mekanism](https://github.com/mekanism/mekanism) - MIT
 
-Some of the `TickRecipeMixin` code was inspired by `TechReborn`'s implementation of machine sounds. ModMenu, Config, and KubeJS plugin implementation is based heavily off of Modern Industrialization's methods.
+Looping sound code implementation inspired from Extended Industrialization's Tesla Coil sounds
 
 ## Disclaimer
 This mod is not affiliated with the Modern Industrialization mod and it's development team. Please do not go to them if you have any issues.

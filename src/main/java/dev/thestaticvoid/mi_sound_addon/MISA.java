@@ -1,6 +1,8 @@
 package dev.thestaticvoid.mi_sound_addon;
 
 import com.mojang.logging.LogUtils;
+import dev.thestaticvoid.mi_sound_addon.item.MISAItem;
+import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -19,9 +21,12 @@ public class MISA {
     }
 
     public MISA(IEventBus bus, ModContainer container) {
-
         // Register the config
         container.registerConfig(ModConfig.Type.COMMON, MISAConfig.CONFIG_SPEC);
 
+        MISASound.init(bus);
+        MISAItem.init(bus);
+
+        LOGGER.info("MI Sound Addon initialized");
     }
 }
