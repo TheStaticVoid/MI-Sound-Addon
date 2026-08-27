@@ -16,11 +16,8 @@ import org.jspecify.annotations.NonNull;
 import java.util.List;
 
 public class MalletItem extends Item {
-    public static final String MACHINE_SILENCED = "message.mi_sound_addon.machine_silenced";
-    public static final String MACHINE_UNSICLEND = "message.mi_sound_addon.machine_unsilenced";
-
     public MalletItem(Properties properties) {
-        super(properties);
+        super(properties.stacksTo(1));
     }
 
     @Override
@@ -32,17 +29,5 @@ public class MalletItem extends Item {
 
         tooltipComponents.add(Component.translatable("message.mi_sound_addon.tooltip").withStyle(ChatFormatting.AQUA));
         super.appendHoverText(stack, context, tooltipComponents, isAdvanced);
-    }
-
-    @Override
-    public InteractionResult useOn(UseOnContext context) {
-        Level level = context.getLevel();
-        BlockEntity blockEntity = level.getBlockEntity(context.getClickedPos());
-        if (blockEntity instanceof MachineBlockEntity machineEntity) {
-            machineEntity.components();
-        }
-
-
-        return super.useOn(context);
     }
 }

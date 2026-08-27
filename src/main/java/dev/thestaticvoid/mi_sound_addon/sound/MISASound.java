@@ -2,12 +2,16 @@ package dev.thestaticvoid.mi_sound_addon.sound;
 
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISA;
+import dev.thestaticvoid.mi_sound_addon.MISAConfig;
 import dev.thestaticvoid.mi_sound_addon.client.sound.MachineLoopSound;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
@@ -55,6 +59,16 @@ public class MISASound {
         } else {
             throw new IllegalStateException("Tried to set volume of non-existent recipe type: %s".formatted(location));
         }
+    }
+
+    public static void playMalletSound(Level level, BlockPos pos) {
+        level.playSound(
+                null,
+                pos,
+                SoundEvents.ANVIL_USE,
+                SoundSource.BLOCKS,
+                (float) MISAConfig.CONFIG.wrenchVolume.get().doubleValue(),
+                1.0f);
     }
 
     private static ResourceLocation createFormattedResourceLocation(ResourceLocation id) {

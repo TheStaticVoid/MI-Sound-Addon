@@ -15,6 +15,7 @@ import java.util.function.Supplier;
 public class MachineLoopSound extends AbstractTickableSoundInstance {
     private final Supplier<Boolean> shouldStop;
     private final Runnable onStop;
+    private final float soundVolume;
 
     public MachineLoopSound(BlockPos position, ModSoundEvent event, Supplier<Boolean> shouldStop, Runnable onStop) {
         super(event.event().get(), SoundSource.BLOCKS, SoundInstance.createUnseededRandom());
@@ -28,13 +29,11 @@ public class MachineLoopSound extends AbstractTickableSoundInstance {
         this.looping = true;
         this.shouldStop = shouldStop;
         this.onStop = onStop;
-        MISA.LOGGER.info("MachineLoopSound initialized");
+        this.soundVolume = event.volume();
     }
 
     @Override
     public void tick() {
-        MISA.LOGGER.info("MachineSoundLoop");
-        MISA.LOGGER.info("isStopped: %s\tshouldStop: %s".formatted(this.isStopped(), shouldStop.get()));
         if (this.isStopped()) {
             return;
         }
@@ -45,9 +44,7 @@ public class MachineLoopSound extends AbstractTickableSoundInstance {
             return;
         }
 
-        // TODO
-        // Change volume based on config value
-        this.volume = 1.0f;
+        this.volume = this.soundVolume;
         this.pitch = 1.0f;
     }
 

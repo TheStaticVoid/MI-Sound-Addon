@@ -1,0 +1,10 @@
+{
+  "values": [
+    "modern_industrialization:config_card",
+    "extended_industrialization:machine_config_card",
+    "extended_industrialization:tesla_calibrator",
+    "extended_industrialization:tesla_handheld_receiver",
+    "industrialization_overdrive:terminal",
+    "yet_another_industrialization:machine_diagnoser"
+  ]
+}

@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.component;
 
+import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.MachineComponent;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -18,7 +19,8 @@ public class SilencedComponent implements MachineComponent {
         silenced = tag.getBoolean("silenced");
     }
 
-    public void onMalletUse() {
+    public void onMalletUse(MachineBlockEntity be) {
         silenced = !silenced;
+        be.sync(false);
     }
 }

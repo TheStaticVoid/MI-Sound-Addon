@@ -34,8 +34,8 @@ public abstract class MachineBlockEntityMixin implements SilencedComponentInterf
     }
 
     @Override
-    public void mISoundAddon$toggleSilencedState() {
-        mI_Sound_Addon$silencedComp.onMalletUse();
+    public void mISoundAddon$toggleSilencedState(MachineBlockEntity be) {
+        mI_Sound_Addon$silencedComp.onMalletUse(be);
     }
 
     @Override

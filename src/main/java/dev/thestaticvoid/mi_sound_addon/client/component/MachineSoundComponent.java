@@ -4,8 +4,8 @@ import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.MachineComponent;
 import dev.thestaticvoid.mi_sound_addon.MISA;
 import dev.thestaticvoid.mi_sound_addon.client.sound.MISAClientSound;
+import dev.thestaticvoid.mi_sound_addon.component.SilencedComponent;
 import dev.thestaticvoid.mi_sound_addon.sound.ModSoundEvent;
-import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 
@@ -30,11 +30,11 @@ public class MachineSoundComponent implements MachineComponent.ClientOnly {
     public void tick() {
         if (!isPlaying && shouldPlay.get() && soundEvent != null) {
             isPlaying = true;
-            MISA.LOGGER.info(String.format("Machine tick: %s, %s, %s, %s", machine, soundEvent, shouldPlay, isPlaying));
             MISAClientSound.startMachineLoopingSound(
                     this.machine.getBlockPos(),
                     this.soundEvent,
-                    () -> machine.isRemoved() || !this.shouldPlay.get(),
+                    () -> machine.isRemoved() || !this.shouldPlay.get() ||
+                            this.machine.components.getOrThrow(SilencedComponent.class).silenced,
                     () -> isPlaying = false
             );
         }

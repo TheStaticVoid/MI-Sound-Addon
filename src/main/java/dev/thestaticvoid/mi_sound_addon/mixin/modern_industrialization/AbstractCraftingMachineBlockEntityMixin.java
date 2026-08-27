@@ -11,6 +11,7 @@ import aztech.modern_industrialization.machines.guicomponents.ProgressBar;
 import aztech.modern_industrialization.machines.init.MachineTier;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.client.component.MachineSoundComponent;
+import dev.thestaticvoid.mi_sound_addon.component.SilencedComponent;
 import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -45,6 +46,8 @@ public abstract class AbstractCraftingMachineBlockEntityMixin extends MachineBlo
             ProgressBar.Params progressBarParams,
             MachineTier tier,
             CallbackInfo ci) {
+
+        SilencedComponent silencedComponent = this.components.getOrThrow(SilencedComponent.class);
 
         mI_Sound_Addon$machineSoundComponent = new MachineSoundComponent(
                 this,
