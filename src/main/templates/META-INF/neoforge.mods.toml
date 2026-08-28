@@ -1,7 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
-# A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/TheStaticVoid/MI-Sound-Addon/issues"
 [[mods]]
 modId = "${mod_id}"

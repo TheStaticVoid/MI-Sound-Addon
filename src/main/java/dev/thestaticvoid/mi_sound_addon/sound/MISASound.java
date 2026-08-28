@@ -1,5 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.sound;
 
+import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISA;
 import dev.thestaticvoid.mi_sound_addon.MISAConfig;
@@ -71,7 +72,12 @@ public class MISASound {
                 1.0f);
     }
 
-    private static ResourceLocation createFormattedResourceLocation(ResourceLocation id) {
+    public static ModSoundEvent getBoilerEvent() {
+        ResourceLocation location = createFormattedResourceLocation(MI.id("boiler"));
+        return SOUND_EVENTS.getOrDefault(location, null);
+    }
+
+    public static ResourceLocation createFormattedResourceLocation(ResourceLocation id) {
         // This formats the output to be in the following format:
         // mi_sound_addon:mod_namespace/mod_path
         // An input of "modern_industrialization:assembler" would return
