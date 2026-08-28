@@ -46,7 +46,7 @@ public abstract class SteamBoilerMultiblockBlockEntityMixin extends MultiblockMa
         mI_Sound_Addon$machineSoundComponent = new MachineSoundComponent(
                 this,
                 MISASound.getBoilerEvent(),
-                () -> isActiveComponent.isActive
+                () -> this.isActiveComponent.isActive
         );
         this.registerComponents(mI_Sound_Addon$machineSoundComponent);
     }

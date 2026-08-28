@@ -4,8 +4,6 @@ import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
 import dev.thestaticvoid.mi_sound_addon.MISA;
 import dev.thestaticvoid.mi_sound_addon.MISAConfig;
-import dev.thestaticvoid.mi_sound_addon.client.sound.MachineLoopSound;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
@@ -34,29 +32,33 @@ public class MISASound {
         SOUND_EVENTS_REGISTRY.register(bus);
     }
 
-    public static void addSoundEvent(ResourceLocation type) {
-        addSoundEvent(type, DEFAULT_SOUND_VOLUME);
+    public static void addSoundEvent(ResourceLocation location) {
+        addSoundEvent(location, DEFAULT_SOUND_VOLUME);
     }
 
-    public static void addSoundEvent(@NotNull ResourceLocation type, float volume) {
-        ResourceLocation location = createFormattedResourceLocation(type);
+    public static void addSoundEvent(@NotNull ResourceLocation location, float volume) {
+        ResourceLocation formattedLocation = createFormattedResourceLocation(location);
         Supplier<SoundEvent> event = SOUND_EVENTS_REGISTRY.register(
-                location.getPath(),
-                () -> SoundEvent.createVariableRangeEvent(location)
+                formattedLocation.getPath(),
+                () -> SoundEvent.createVariableRangeEvent(formattedLocation)
         );
 
-        SOUND_EVENTS.put(location, new ModSoundEvent(event, volume));
+        SOUND_EVENTS.put(formattedLocation, new ModSoundEvent(event, volume));
     }
 
     public static ModSoundEvent getSoundEventByRecipeType(MachineRecipeType machineRecipeType) {
+        if (machineRecipeType == null) return null;
         ResourceLocation location = createFormattedResourceLocation(machineRecipeType.getId());
         return SOUND_EVENTS.getOrDefault(location, null);
     }
 
     public static void setVolume(ResourceLocation location, float volume) {
         if (SOUND_EVENTS.containsKey(location)) {
-            SOUND_EVENTS.remove(location);
-            addSoundEvent(location, volume);
+            ModSoundEvent soundEvent = SOUND_EVENTS.get(location);
+            if (soundEvent.volume() != volume) {
+                SOUND_EVENTS.remove(location);
+                SOUND_EVENTS.put(location, new ModSoundEvent(soundEvent.event(), volume));
+            }
         } else {
             throw new IllegalStateException("Tried to set volume of non-existent recipe type: %s".formatted(location));
         }
@@ -72,9 +74,53 @@ public class MISASound {
                 1.0f);
     }
 
+    public static void playConfigCardSound(Level level, BlockPos pos) {
+        ModSoundEvent mse = SOUND_EVENTS.getOrDefault(createFormattedResourceLocation(MI.id("conifg_card")), null);
+        level.playSound(
+                null,
+                pos,
+                mse.event().get(),
+                SoundSource.BLOCKS,
+                mse.volume(),
+                1.0f);
+    }
+
     public static ModSoundEvent getBoilerEvent() {
         ResourceLocation location = createFormattedResourceLocation(MI.id("boiler"));
         return SOUND_EVENTS.getOrDefault(location, null);
+    }
+
+    public static ModSoundEvent getGeneratorEvent(String name) {
+        if (name.equals("lv_diesel_generator") ||
+                name.equals("mv_diesel_generator") ||
+                name.equals("hv_diesel_generator") ||
+                name.equals("large_diesel_generator")) {
+
+            return SOUND_EVENTS.getOrDefault(createFormattedResourceLocation(MI.id("diesel")), null);
+        }
+
+        if (name.equals("lv_steam_turbine") ||
+                name.equals("mv_steam_turbine") ||
+                name.equals("hv_steam_turbine") ||
+                name.equals("large_steam_turbine") ||
+                name.equals("plasma_turbine")) {
+
+            return SOUND_EVENTS.getOrDefault(createFormattedResourceLocation(MI.id("turbine")), null);
+        }
+
+        return SOUND_EVENTS.getOrDefault(createFormattedResourceLocation(MI.id(name)), null);
+    }
+
+    public static ModSoundEvent getReplicatorEvent() {
+        return SOUND_EVENTS.getOrDefault(createFormattedResourceLocation(MI.id("replicator")), null);
+    }
+
+    public static ModSoundEvent getFissionReactorEvent() {
+        return SOUND_EVENTS.getOrDefault(createFormattedResourceLocation(MI.id("fission_reactor")), null);
+    }
+
+    public static ModSoundEvent getElectricBlastFurnaceEvent() {
+        return SOUND_EVENTS.getOrDefault(createFormattedResourceLocation(MI.id("electric_blast_furnace")), null);
     }
 
     public static ResourceLocation createFormattedResourceLocation(ResourceLocation id) {

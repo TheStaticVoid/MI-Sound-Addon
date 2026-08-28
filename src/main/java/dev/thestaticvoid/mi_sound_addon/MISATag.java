@@ -5,7 +5,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
 public class MISATag {
-    public static final TagKey<Item> CONFIG_CARDS = item("tools/config_card");
+    public static final TagKey<Item> CONFIG_CARDS = item("tools/config_cards");
     public static final TagKey<Item> UPGRADES = item("upgrades");
     public static final TagKey<Item> DRILLS = item("tools/drills");
     public static final TagKey<Item> CHAINSAWS = item("tools/chainsaws");

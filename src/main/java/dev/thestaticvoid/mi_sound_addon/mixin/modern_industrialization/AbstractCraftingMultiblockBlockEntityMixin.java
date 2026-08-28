@@ -1,20 +1,18 @@
 package dev.thestaticvoid.mi_sound_addon.mixin.modern_industrialization;
 
 import aztech.modern_industrialization.machines.BEP;
-import aztech.modern_industrialization.machines.MachineBlockEntity;
-import aztech.modern_industrialization.machines.blockentities.AbstractCraftingMachineBlockEntity;
+import aztech.modern_industrialization.machines.blockentities.multiblocks.AbstractCraftingMultiblockBlockEntity;
 import aztech.modern_industrialization.machines.components.CrafterComponent;
 import aztech.modern_industrialization.machines.components.IsActiveComponent;
-import aztech.modern_industrialization.machines.components.MachineInventoryComponent;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
-import aztech.modern_industrialization.machines.guicomponents.ProgressBar;
-import aztech.modern_industrialization.machines.init.MachineTier;
-import aztech.modern_industrialization.machines.recipe.MachineRecipeType;
+import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
+import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
+import dev.thestaticvoid.mi_sound_addon.MISA;
 import dev.thestaticvoid.mi_sound_addon.MISAConfig;
 import dev.thestaticvoid.mi_sound_addon.client.component.MachineSoundComponent;
-import dev.thestaticvoid.mi_sound_addon.component.SilencedComponent;
 import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
+import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,39 +21,38 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(AbstractCraftingMachineBlockEntity.class)
-public abstract class AbstractCraftingMachineBlockEntityMixin extends MachineBlockEntity {
+@Mixin(AbstractCraftingMultiblockBlockEntity.class)
+public abstract class AbstractCraftingMultiblockBlockEntityMixin extends MultiblockMachineBlockEntity {
     @Shadow(remap = false)
     @Final
     protected CrafterComponent crafter;
 
     @Shadow(remap = false)
-    protected IsActiveComponent isActiveComponent;
+    @Final
+    private IsActiveComponent isActive;
 
     @Unique
-    public MachineSoundComponent mI_Sound_Addon$machineSoundComponent;
+    private MachineSoundComponent mI_Sound_Addon$machineSoundComponent;
 
-    public AbstractCraftingMachineBlockEntityMixin(
+    public AbstractCraftingMultiblockBlockEntityMixin(
             BEP bep,
             MachineGuiParameters guiParams,
             OrientationComponent.Params orientationParams) {
         super(bep, guiParams, orientationParams);
     }
 
-    @Inject(method = "<init>", at = @At("TAIL"), remap = false)
+    @Inject(method = "<init>(Laztech/modern_industrialization/machines/BEP;Lnet/minecraft/resources/ResourceLocation;Laztech/modern_industrialization/machines/components/OrientationComponent$Params;[Laztech/modern_industrialization/machines/multiblocks/ShapeTemplate;)V", at = @At("TAIL"), remap = false)
     private void constructorMixin(
             BEP bep,
-            MachineRecipeType recipeType,
-            MachineInventoryComponent inventory,
-            MachineGuiParameters guiParams,
-            ProgressBar.Params progressBarParams,
-            MachineTier tier,
+            ResourceLocation blockId,
+            OrientationComponent.Params orientationParams,
+            ShapeTemplate[] shapeTemplates,
             CallbackInfo ci) {
 
         mI_Sound_Addon$machineSoundComponent = new MachineSoundComponent(
                 this,
                 () -> this.crafter.getBehavior().recipeType(),
-                () -> this.isActiveComponent.isActive
+                () -> this.isActive.isActive
         );
         this.registerComponents(mI_Sound_Addon$machineSoundComponent);
     }
@@ -63,7 +60,7 @@ public abstract class AbstractCraftingMachineBlockEntityMixin extends MachineBlo
     @Inject(method = "tick", at = @At("HEAD"), remap = false)
     private void tickMixin(CallbackInfo ci) {
         if (level.isClientSide() && MISAConfig.CONFIG.machineSoundsEnabled.get()) {
-            mI_Sound_Addon$machineSoundComponent.tick();
+            this.components.getOrThrow(MachineSoundComponent.class).tick();
         }
     }
 }

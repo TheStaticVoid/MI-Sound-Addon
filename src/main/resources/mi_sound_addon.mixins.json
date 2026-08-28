@@ -6,8 +6,13 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "modern_industrialization.AbstractCraftingMachineBlockEntityMixin",
+    "modern_industrialization.AbstractCraftingMultiblockBlockEntityMixin",
     "modern_industrialization.BoilerMachineBlockEntityMixin",
+    "modern_industrialization.GeneratorMachineBlockEntityMixin",
+    "modern_industrialization.GeneratorMultiblockBlockEntityMixin",
     "modern_industrialization.MachineBlockEntityMixin",
+    "modern_industrialization.NuclearReactorMultiblockBlockEntityMixin",
+    "modern_industrialization.ReplicatorMachineBlockEntityMixin",
     "modern_industrialization.SteamBoilerMultiblockBlockEntityMixin"
   ],
   "client": [

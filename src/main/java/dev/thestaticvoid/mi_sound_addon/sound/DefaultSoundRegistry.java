@@ -32,8 +32,9 @@ public class DefaultSoundRegistry {
     }
 
     private static void populateEISounds() {
+        // Sound event already exists, manually add it to the SOUND_EVENTS map
         MISASound.SOUND_EVENTS.put(
-                EI.id("tesla.loop"),
+                MISASound.createFormattedResourceLocation(EI.id("tesla.loop")),
                 new ModSoundEvent(EISounds.TESLA_COIL_LOOP, 1.0f)
         );
         MISASound.addSoundEvent(EI.id("tesla_tower"));

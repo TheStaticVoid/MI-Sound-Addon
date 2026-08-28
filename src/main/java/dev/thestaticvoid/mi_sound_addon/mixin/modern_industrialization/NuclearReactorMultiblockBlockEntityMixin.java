@@ -1,14 +1,15 @@
 package dev.thestaticvoid.mi_sound_addon.mixin.modern_industrialization;
 
 import aztech.modern_industrialization.machines.BEP;
-import aztech.modern_industrialization.machines.MachineBlockEntity;
-import aztech.modern_industrialization.machines.blockentities.BoilerMachineBlockEntity;
+import aztech.modern_industrialization.machines.blockentities.multiblocks.NuclearReactorMultiblockBlockEntity;
 import aztech.modern_industrialization.machines.components.IsActiveComponent;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
+import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
 import dev.thestaticvoid.mi_sound_addon.MISAConfig;
 import dev.thestaticvoid.mi_sound_addon.client.component.MachineSoundComponent;
 import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -16,15 +17,16 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(BoilerMachineBlockEntity.class)
-public abstract class BoilerMachineBlockEntityMixin extends MachineBlockEntity {
+@Mixin(NuclearReactorMultiblockBlockEntity.class)
+public abstract class NuclearReactorMultiblockBlockEntityMixin extends MultiblockMachineBlockEntity {
     @Shadow(remap = false)
-    protected IsActiveComponent isActiveComponent;
+    @Final
+    private IsActiveComponent isActive;
 
     @Unique
-    public MachineSoundComponent mI_Sound_Addon$machineSoundComponent;
+    private MachineSoundComponent machineSoundComponent;
 
-    public BoilerMachineBlockEntityMixin(
+    public NuclearReactorMultiblockBlockEntityMixin(
             BEP bep,
             MachineGuiParameters guiParams,
             OrientationComponent.Params orientationParams) {
@@ -32,19 +34,19 @@ public abstract class BoilerMachineBlockEntityMixin extends MachineBlockEntity {
     }
 
     @Inject(method = "<init>", at = @At("TAIL"), remap = false)
-    private void constructorMixin(BEP bep, boolean bronze, CallbackInfo ci) {
-        mI_Sound_Addon$machineSoundComponent = new MachineSoundComponent(
+    private void constructorMixin(BEP bep, CallbackInfo ci) {
+        machineSoundComponent = new MachineSoundComponent(
                 this,
-                MISASound.getBoilerEvent(),
-                () -> this.isActiveComponent.isActive
+                MISASound.getFissionReactorEvent(),
+                () -> this.isActive.isActive
         );
-        this.registerComponents(mI_Sound_Addon$machineSoundComponent);
+        this.registerComponents(machineSoundComponent);
     }
 
     @Inject(method = "tick", at = @At("HEAD"), remap = false)
     private void tickMixin(CallbackInfo ci) {
-        if (level.isClientSide() && MISAConfig.CONFIG.generatorSoundsEnabled.get()) {
-            mI_Sound_Addon$machineSoundComponent.tick();
+        if (level.isClientSide() && MISAConfig.CONFIG.machineSoundsEnabled.get()) {
+            machineSoundComponent.tick();
         }
     }
 }

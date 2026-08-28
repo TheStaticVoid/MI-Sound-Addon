@@ -1,8 +1,10 @@
 package dev.thestaticvoid.mi_sound_addon.mixin.modern_industrialization;
 
+import aztech.modern_industrialization.api.energy.CableTier;
+import aztech.modern_industrialization.definition.FluidDefinition;
 import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
-import aztech.modern_industrialization.machines.blockentities.BoilerMachineBlockEntity;
+import aztech.modern_industrialization.machines.blockentities.GeneratorMachineBlockEntity;
 import aztech.modern_industrialization.machines.components.IsActiveComponent;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
@@ -16,26 +18,36 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(BoilerMachineBlockEntity.class)
-public abstract class BoilerMachineBlockEntityMixin extends MachineBlockEntity {
+@Mixin(GeneratorMachineBlockEntity.class)
+public abstract class GeneratorMachineBlockEntityMixin extends MachineBlockEntity {
     @Shadow(remap = false)
     protected IsActiveComponent isActiveComponent;
 
     @Unique
     public MachineSoundComponent mI_Sound_Addon$machineSoundComponent;
 
-    public BoilerMachineBlockEntityMixin(
+    public GeneratorMachineBlockEntityMixin(
             BEP bep,
             MachineGuiParameters guiParams,
             OrientationComponent.Params orientationParams) {
         super(bep, guiParams, orientationParams);
     }
 
-    @Inject(method = "<init>", at = @At("TAIL"), remap = false)
-    private void constructorMixin(BEP bep, boolean bronze, CallbackInfo ci) {
+    @Inject(method = "<init>(Laztech/modern_industrialization/machines/BEP;Ljava/lang/String;ZLaztech/modern_industrialization/api/energy/CableTier;JJJLaztech/modern_industrialization/definition/FluidDefinition;J)V", at = @At("TAIL"), remap = false)
+    private void constructorMixin(
+            BEP bep,
+            String name,
+            boolean hasFacing,
+            CableTier outputTier,
+            long energyCapacity,
+            long fluidCapacity,
+            long maxEnergyOutput,
+            FluidDefinition acceptedFluid,
+            long fluidEUperMb, CallbackInfo ci) {
+
         mI_Sound_Addon$machineSoundComponent = new MachineSoundComponent(
                 this,
-                MISASound.getBoilerEvent(),
+                MISASound.getGeneratorEvent(name),
                 () -> this.isActiveComponent.isActive
         );
         this.registerComponents(mI_Sound_Addon$machineSoundComponent);

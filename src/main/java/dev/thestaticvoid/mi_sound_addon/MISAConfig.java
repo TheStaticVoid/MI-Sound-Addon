@@ -69,7 +69,10 @@ public class MISAConfig {
                 .comment("Should wrench sounds be enabled")
                 .define("wrench_sounds", true);
 
-        wrenchVolume = createVolumeConfig(builder, "Wrench");
+        wrenchVolume = builder
+                .comment("Wrench Volume")
+                .defineInRange("wrench_volume", 0.5, 0.0, 1.0);
+        
         configCardVolume = createVolumeConfig(builder, "Config Card");
 
         // -- MACHINE SOUNDS -- //
@@ -108,8 +111,8 @@ public class MISAConfig {
         alloySmelterVolume = createVolumeConfig(builder, "Alloy Smelter", "EI");
         bendingMachineVolume = createVolumeConfig(builder, "Bending Machine", "EI");
         canningMachineVolume = createVolumeConfig(builder, "Canning Machine", "EI");
-        teslaCoilVolume = createVolumeConfig(builder, "Tesla Coil Volume", "EI");
-        teslaTowerVolume = createVolumeConfig(builder, "Tesla Tower Volume", "EI");
+        teslaCoilVolume = createVolumeConfig(builder, "Tesla Coil", "EI");
+        teslaTowerVolume = createVolumeConfig(builder, "Tesla Tower", "EI");
         pyrolyseOvenVolume = createVolumeConfig(builder, "Pyrolyse Oven", "IO");
         arboreousGreenhouseVolume = createVolumeConfig(builder, "Arboreous Greenhouse", "YAI");
         cryogenicPrecipitatorVolume = createVolumeConfig(builder, "Cryogenic Precipitator", "YAI");
@@ -141,7 +144,7 @@ public class MISAConfig {
             comment = String.format("%s Volume", machineName);
         }
 
-        return builder.comment(comment).gameRestart().defineInRange(snakeCase, 1.0, 0.0, 5.0);
+        return builder.comment(comment).gameRestart().defineInRange(snakeCase, 1.0, 0.0, 1.0);
     }
 
     static {
