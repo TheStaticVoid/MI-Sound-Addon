@@ -1,0 +1,12 @@
+{
+  "values": [
+    "modern_industrialization:basic_upgrade",
+    "modern_industrialization:advanced_upgrade",
+    "modern_industrialization:turbo_upgrade",
+    "modern_industrialization:highly_advanced_upgrade",
+    "modern_industrialization:quantum_upgrade",
+    "modern_industrialization:overdrive_module",
+    "modern_industrialization:redstone_control_module",
+    "extended_industrialization:tesla_interdimensional_upgrade"
+  ]
+}

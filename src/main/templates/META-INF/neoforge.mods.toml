@@ -1,24 +1,34 @@
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${mod_license}"
-issueTrackerURL = "${mod_github_link}/issues"
-
+issueTrackerURL="https://github.com/TheStaticVoid/MI-Sound-Addon/issues"
 [[mods]]
 modId = "${mod_id}"
 version = "${mod_version}"
 displayName = "${mod_name}"
-displayURL = "${mod_github_link}"
+logoFile="mod_icon.png"
 authors = "${mod_authors}"
 description = '''${mod_description}'''
-logoFile = 'mod_icon.png'
 
 [[mixins]]
 config = "${mod_id}.mixins.json"
+
+# The [[accessTransformers]] block allows you to declare where your AT file is.
+# If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
+#[[accessTransformers]]
+#file="META-INF/accesstransformer.cfg"
 
 [[dependencies."${mod_id}"]]
 modId = "neoforge"
 type = "required"
 versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
 

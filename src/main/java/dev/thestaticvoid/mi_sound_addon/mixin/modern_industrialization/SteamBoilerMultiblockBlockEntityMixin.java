@@ -1,14 +1,15 @@
 package dev.thestaticvoid.mi_sound_addon.mixin.modern_industrialization;
 
-import aztech.modern_industrialization.MI;
-import aztech.modern_industrialization.machines.MachineBlockEntity;
+import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.blockentities.multiblocks.SteamBoilerMultiblockBlockEntity;
-import aztech.modern_industrialization.machines.components.FuelBurningComponent;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
-import dev.thestaticvoid.mi_sound_addon.sound.ModSoundEventInfo;
-import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
-import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
-import dev.thestaticvoid.mi_sound_addon.util.SilencedComponentInterface;
+import aztech.modern_industrialization.machines.components.IsActiveComponent;
+import aztech.modern_industrialization.machines.components.OrientationComponent;
+import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
+import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
+import aztech.modern_industrialization.machines.multiblocks.ShapeTemplate;
+import dev.thestaticvoid.mi_sound_addon.MISAConfig;
+import dev.thestaticvoid.mi_sound_addon.client.component.MachineSoundComponent;
+import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,32 +18,44 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Objects;
-
 @Mixin(SteamBoilerMultiblockBlockEntity.class)
-public class SteamBoilerMultiblockBlockEntityMixin {
+public abstract class SteamBoilerMultiblockBlockEntityMixin extends MultiblockMachineBlockEntity {
     @Final
-    @Shadow
-    private FuelBurningComponent fuelBurning;
+    @Shadow(remap = false)
+    private IsActiveComponent isActiveComponent;
 
     @Unique
-    private long mI_Sound_Addon$lastSoundTime = 0;
+    public MachineSoundComponent mI_Sound_Addon$machineSoundComponent;
 
-    @Inject(method = "tick", at = @At(value = "TAIL"), remap = false)
-    public void tickMixin(CallbackInfo ci) {
-        if (this.fuelBurning.isBurning() && MISoundAddonConfig.CONFIG.generatorSoundsEnabled.get()) {
-            MachineBlockEntity blockEntity = ((MachineBlockEntity)(Object)this);
+    public SteamBoilerMultiblockBlockEntityMixin(
+            BEP bep,
+            MachineGuiParameters guiParams,
+            OrientationComponent.Params orientationParams) {
+        super(bep, guiParams, orientationParams);
+    }
 
-            SilencedComponent silencedState = ((SilencedComponentInterface) blockEntity).mISoundAddon$getSilencedState();
-            if (silencedState.silenced) return;
+    @Inject(method = "<init>", at = @At("TAIL"), remap = false)
+    private void constructorMixin(
+            BEP bep,
+            ShapeTemplate shapeTemplate,
+            String name,
+            long maxEuProduction,
+            boolean highPressure,
+            CallbackInfo ci) {
 
-            ModSoundEventInfo boilerSoundEvent = ModSounds.SOUND_EVENTS.get(MI.id("boiler"));
-            long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
+        mI_Sound_Addon$machineSoundComponent = new MachineSoundComponent(
+                this,
+                MISASound.getBoilerEvent(),
+                () -> this.isActiveComponent.isActive
+        );
+        this.registerComponents(mI_Sound_Addon$machineSoundComponent);
+    }
 
-            if (currentGameTime > mI_Sound_Addon$lastSoundTime + boilerSoundEvent.getSoundDuration()) {
-                mI_Sound_Addon$lastSoundTime = currentGameTime;
-                ModSounds.playSoundNoRecipe(blockEntity, MI.id("boiler"));
-            }
+    @Inject(method = "tick", at = @At("HEAD"), remap = false)
+    private void tickMixin(CallbackInfo ci) {
+        if (level.isClientSide() && MISAConfig.CONFIG.generatorSoundsEnabled.get()) {
+            mI_Sound_Addon$machineSoundComponent.tick();
         }
     }
+
 }

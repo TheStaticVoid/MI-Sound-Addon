@@ -1,16 +1,14 @@
 package dev.thestaticvoid.mi_sound_addon.mixin.modern_industrialization;
 
-import aztech.modern_industrialization.MI;
+import aztech.modern_industrialization.machines.BEP;
 import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.blockentities.BoilerMachineBlockEntity;
-import aztech.modern_industrialization.machines.components.FuelBurningComponent;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
-import dev.thestaticvoid.mi_sound_addon.sound.ModSoundEventInfo;
-import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
-import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
-import dev.thestaticvoid.mi_sound_addon.util.SilencedComponentInterface;
-import org.spongepowered.asm.mixin.Final;
+import aztech.modern_industrialization.machines.components.IsActiveComponent;
+import aztech.modern_industrialization.machines.components.OrientationComponent;
+import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
+import dev.thestaticvoid.mi_sound_addon.MISAConfig;
+import dev.thestaticvoid.mi_sound_addon.client.component.MachineSoundComponent;
+import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -18,32 +16,35 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Objects;
-
 @Mixin(BoilerMachineBlockEntity.class)
-public class BoilerMachineBlockEntityMixin {
-    @Final
+public abstract class BoilerMachineBlockEntityMixin extends MachineBlockEntity {
     @Shadow(remap = false)
-    private FuelBurningComponent fuelBurning;
+    protected IsActiveComponent isActiveComponent;
 
     @Unique
-    private long mI_Sound_Addon$lastSoundTime = 0;
+    public MachineSoundComponent mI_Sound_Addon$machineSoundComponent;
 
-    @Inject(method = "tick", at = @At(value = "TAIL"), remap = false)
-    public void tickMixin(CallbackInfo ci) {
-        if (this.fuelBurning.isBurning() && MISoundAddonConfig.CONFIG.generatorSoundsEnabled.get()) {
-            MachineBlockEntity blockEntity = ((MachineBlockEntity)(Object)this);
+    public BoilerMachineBlockEntityMixin(
+            BEP bep,
+            MachineGuiParameters guiParams,
+            OrientationComponent.Params orientationParams) {
+        super(bep, guiParams, orientationParams);
+    }
 
-            SilencedComponent silencedState = ((SilencedComponentInterface) blockEntity).mISoundAddon$getSilencedState();
-            if (silencedState.silenced) return;
+    @Inject(method = "<init>", at = @At("TAIL"), remap = false)
+    private void constructorMixin(BEP bep, boolean bronze, CallbackInfo ci) {
+        mI_Sound_Addon$machineSoundComponent = new MachineSoundComponent(
+                this,
+                MISASound.getBoilerEvent(),
+                () -> this.isActiveComponent.isActive
+        );
+        this.registerComponents(mI_Sound_Addon$machineSoundComponent);
+    }
 
-            ModSoundEventInfo boilerSoundEvent = ModSounds.SOUND_EVENTS.get(MI.id("boiler"));
-            long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
-
-            if (currentGameTime > mI_Sound_Addon$lastSoundTime + boilerSoundEvent.getSoundDuration()) {
-                mI_Sound_Addon$lastSoundTime = currentGameTime;
-                ModSounds.playSoundNoRecipe(blockEntity, MI.id("boiler"));
-            }
+    @Inject(method = "tick", at = @At("HEAD"), remap = false)
+    private void tickMixin(CallbackInfo ci) {
+        if (level.isClientSide() && MISAConfig.CONFIG.generatorSoundsEnabled.get()) {
+            mI_Sound_Addon$machineSoundComponent.tick();
         }
     }
 }

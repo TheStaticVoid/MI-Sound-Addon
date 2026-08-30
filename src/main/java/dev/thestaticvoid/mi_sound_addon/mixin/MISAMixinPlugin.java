@@ -1,8 +1,6 @@
 package dev.thestaticvoid.mi_sound_addon.mixin;
 
-import dev.thestaticvoid.mi_sound_addon.MISoundAddon;
-import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.LoadingModList;
+import dev.thestaticvoid.mi_sound_addon.util.MISAUtil;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -10,11 +8,9 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-public class MISoundAddonMixinPlugin implements IMixinConfigPlugin {
+public class MISAMixinPlugin implements IMixinConfigPlugin {
     @Override
-    public void onLoad(String mixinPackage) {
-
-    }
+    public void onLoad(String mixinPackage) { }
 
     @Override
     public String getRefMapperConfig() {
@@ -23,13 +19,14 @@ public class MISoundAddonMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.equals("dev.thestaticvoid.mi_sound_addon.mixin.compat.tesseract_api.AbstractModularCrafterComponentMixin")) {
-            return MISoundAddon.checkModIsLoaded("tesseract_api");
+        if (mixinClassName.contains("tesseract_api")) {
+            return MISAUtil.checkModIsLoaded("tesseract_api");
         }
 
         if (mixinClassName.contains("extended_industrialization")) {
-            return MISoundAddon.checkModIsLoaded("extended_industrialization");
+            return MISAUtil.checkModIsLoaded("extended_industrialization");
         }
+
         return true;
     }
 
@@ -40,7 +37,7 @@ public class MISoundAddonMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public List<String> getMixins() {
-        return null;
+        return List.of();
     }
 
     @Override

@@ -2,32 +2,25 @@
   "required": true,
   "minVersion": "0.8",
   "package": "dev.thestaticvoid.mi_sound_addon.mixin",
-  "plugin": "dev.thestaticvoid.mi_sound_addon.mixin.MISoundAddonMixinPlugin",
-  "compatibilityLevel": "JAVA_8",
-  "refmap": "mi_sound_addon.refmap.json",
+  "plugin": "dev.thestaticvoid.mi_sound_addon.mixin.MISAMixinPlugin",
+  "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "compat.extended_industrialization.SolarBoilerMachineBlockEntityMixin",
-    "compat.extended_industrialization.TeslaCoilMachineBlockEntityMixin",
-    "compat.extended_industrialization.TeslaTowerBlockEntityMixin",
-    "compat.extended_industrialization.TeslaTowerUpgradeComponentMixin",
-    "compat.tesseract_api.AbstractModularCrafterComponentMixin",
+    "modern_industrialization.AbstractCraftingMachineBlockEntityMixin",
+    "modern_industrialization.AbstractCraftingMultiblockBlockEntityMixin",
     "modern_industrialization.BoilerMachineBlockEntityMixin",
     "modern_industrialization.GeneratorMachineBlockEntityMixin",
     "modern_industrialization.GeneratorMultiblockBlockEntityMixin",
-    "modern_industrialization.ItemNetworkNodeMixin",
     "modern_industrialization.MachineBlockEntityMixin",
     "modern_industrialization.NuclearReactorMultiblockBlockEntityMixin",
-    "modern_industrialization.OverdriveComponentMixin",
-    "modern_industrialization.PipeBlockMixin",
-    "modern_industrialization.RedstoneControlComponentMixin",
     "modern_industrialization.ReplicatorMachineBlockEntityMixin",
-    "modern_industrialization.SteamBoilerMultiblockBlockEntityMixin",
-    "modern_industrialization.TickRecipeMixin",
-    "modern_industrialization.UpgradeComponentMixin"
+    "modern_industrialization.SteamBoilerMultiblockBlockEntityMixin"
   ],
   "client": [
   ],
   "injectors": {
     "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
   }
 }

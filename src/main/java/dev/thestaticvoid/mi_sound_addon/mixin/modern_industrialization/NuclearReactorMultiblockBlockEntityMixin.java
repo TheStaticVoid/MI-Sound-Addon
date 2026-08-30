@@ -1,18 +1,14 @@
 package dev.thestaticvoid.mi_sound_addon.mixin.modern_industrialization;
 
-import aztech.modern_industrialization.MI;
 import aztech.modern_industrialization.machines.BEP;
-import aztech.modern_industrialization.machines.MachineBlockEntity;
 import aztech.modern_industrialization.machines.blockentities.multiblocks.NuclearReactorMultiblockBlockEntity;
 import aztech.modern_industrialization.machines.components.IsActiveComponent;
 import aztech.modern_industrialization.machines.components.OrientationComponent;
 import aztech.modern_industrialization.machines.gui.MachineGuiParameters;
 import aztech.modern_industrialization.machines.multiblocks.MultiblockMachineBlockEntity;
-import aztech.modern_industrialization.util.Tickable;
-import dev.thestaticvoid.mi_sound_addon.MISoundAddonConfig;
-import dev.thestaticvoid.mi_sound_addon.sound.ModSounds;
-import dev.thestaticvoid.mi_sound_addon.util.SilencedComponent;
-import dev.thestaticvoid.mi_sound_addon.util.SilencedComponentInterface;
+import dev.thestaticvoid.mi_sound_addon.MISAConfig;
+import dev.thestaticvoid.mi_sound_addon.client.component.MachineSoundComponent;
+import dev.thestaticvoid.mi_sound_addon.sound.MISASound;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -21,33 +17,36 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Objects;
-
 @Mixin(NuclearReactorMultiblockBlockEntity.class)
-public abstract class NuclearReactorMultiblockBlockEntityMixin extends MultiblockMachineBlockEntity implements Tickable {
-    public NuclearReactorMultiblockBlockEntityMixin(BEP bep, MachineGuiParameters guiParams, OrientationComponent.Params orientationParams) {
+public abstract class NuclearReactorMultiblockBlockEntityMixin extends MultiblockMachineBlockEntity {
+    @Shadow(remap = false)
+    @Final
+    private IsActiveComponent isActive;
+
+    @Unique
+    private MachineSoundComponent machineSoundComponent;
+
+    public NuclearReactorMultiblockBlockEntityMixin(
+            BEP bep,
+            MachineGuiParameters guiParams,
+            OrientationComponent.Params orientationParams) {
         super(bep, guiParams, orientationParams);
     }
 
-    @Unique
-    public long mI_Sound_Addon$lastSoundTime = 0;
+    @Inject(method = "<init>", at = @At("TAIL"), remap = false)
+    private void constructorMixin(BEP bep, CallbackInfo ci) {
+        machineSoundComponent = new MachineSoundComponent(
+                this,
+                MISASound.getFissionReactorEvent(),
+                () -> this.isActive.isActive
+        );
+        this.registerComponents(machineSoundComponent);
+    }
 
-    @Shadow(remap = false) @Final private IsActiveComponent isActive;
-
-    @Inject(method = "tick", at = @At(value = "INVOKE",
-            target = "Laztech/modern_industrialization/machines/components/IsActiveComponent;updateActive(ZLaztech/modern_industrialization/machines/MachineBlockEntity;)V",
-            shift = At.Shift.AFTER), remap = false)
+    @Inject(method = "tick", at = @At("HEAD"), remap = false)
     private void tickMixin(CallbackInfo ci) {
-        if (isActive.isActive && MISoundAddonConfig.CONFIG.machineSoundsEnabled.get()) {
-            MachineBlockEntity blockEntity = this;
-            SilencedComponent silencedState = ((SilencedComponentInterface)blockEntity).mISoundAddon$getSilencedState();
-            if (silencedState.silenced) return;
-            long currentGameTime = Objects.requireNonNull(blockEntity.getLevel()).getGameTime();
-
-            if (currentGameTime > mI_Sound_Addon$lastSoundTime + ModSounds.getDurationFromString(MI.id("fission_reactor"))) {
-                mI_Sound_Addon$lastSoundTime = currentGameTime;
-                ModSounds.playSoundNoRecipe(blockEntity, MI.id("fission_reactor"));
-            }
+        if (level.isClientSide() && MISAConfig.CONFIG.machineSoundsEnabled.get()) {
+            machineSoundComponent.tick();
         }
     }
 }

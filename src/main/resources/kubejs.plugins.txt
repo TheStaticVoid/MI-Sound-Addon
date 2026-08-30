@@ -1,1 +1,1 @@
-dev.thestaticvoid.mi_sound_addon.compat.kubejs.MISoundAddonKubeJSPlugin
+dev.thestaticvoid.mi_sound_addon.compat.kubejs.MISAKubeJSPlugin
