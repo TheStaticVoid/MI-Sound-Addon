@@ -23,7 +23,7 @@ public class MalletItem extends Item {
     public static final String MACHINE_UNSILENCED = "message.mi_sound_addon.machine_unsilenced";
 
     public MalletItem(Properties properties) {
-        super(properties);
+        super(properties.stacksTo(1));
     }
 
     @Override
